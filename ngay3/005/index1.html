@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .demo {
+            background-color: green;
+            width: 150px;
+            height: 150px;
+            margin-bottom: 200px;
+        }
+
+        #demo1 {
+            overflow: visible;
+        }
+
+        #demo2 {
+            overflow: hidden;
+        }
+
+        #demo3 {
+            overflow: scroll;
+        }
+
+        #demo4 {
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <pre>
+        thuộc tính overflow sẽ kiểm soát điều gì xảy ra
+        khi nội dung trong 1 thẻ quá lớn so với kích cỡ của thẻ
+    </pre>
+
+    <div class="demo" id="demo1">
+        <h2>Demo 1</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta incidunt iste nobis quasi quis. Consequatur corporis doloremque dolores, esse et ex magni numquam obcaecati, praesentium, quasi quisquam sit vel voluptate!</p>
+    </div>
+
+    <div class="demo" id="demo2">
+        <h2>Demo 2</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta incidunt iste nobis quasi quis. Consequatur corporis doloremque dolores, esse et ex magni numquam obcaecati, praesentium, quasi quisquam sit vel voluptate!</p>
+    </div>
+
+    <div class="demo" id="demo3">
+        <h2>Demo 3</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta incidunt iste nobis quasi quis. Consequatur corporis doloremque dolores, esse et ex magni numquam obcaecati, praesentium, quasi quisquam sit vel voluptate!</p>
+    </div>
+
+
+    <div class="demo" id="demo4">
+        <h2>Demo 4</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta incidunt iste nobis quasi quis. Consequatur corporis doloremque dolores, esse et ex magni numquam obcaecati, praesentium, quasi quisquam sit vel voluptate!</p>
+    </div>
+
+    <pre>
+        overflow: visible; ( hiển thị phần nội dung tràn ra )
+        overflow: hidden; ( không hiển thị phần nội dung tràn ra )
+        overflow: scroll; ( hiển thị thanh cuộn chuột bất kể nội dung
+        có tràn ra hay không )
+        overflow: auto ( hiển thị thanh cuộn chuột khi nội dung tràn ra
+        ngoài và không hiển thị thanh cuộn chuột nếu nội dung ko tràn ra)
+
+        overflow giá trị mặc định là visible
+    </pre>
+
+</body>
+</html>
