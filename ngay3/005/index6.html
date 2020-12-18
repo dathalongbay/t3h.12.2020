@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .classA.classB {
+            color: darkred;
+        }
+
+        #idA.classB {
+            color: yellow;
+        }
+    </style>
+</head>
+<body>
+
+<pre>
+.classA.classB ( đồng thời thỏa mãn 2 bộ chọn )
+.classA .classB ( chọn classB nằm trong classA )
+
+#idA.classB ( đồng thời id là idA và class là classB)
+</pre>
+
+    <div class="classA">.classA</div>
+    <div class="classB">.classB</div>
+    <div class="classA classB">.classA.classB</div>
+
+
+    <div id="idA" class="classB">#idA.classB</div>
+</body>
+</html>
