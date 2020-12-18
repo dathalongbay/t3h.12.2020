@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        #demoA {
+            border: 2px solid red;
+            padding: 40px;
+        }
+
+        #demoA::before {
+            content: "Nội dung thêm vào phía trước bên trong thẻ";
+            color: green;
+            font-size: 32px;
+        }
+
+        #demoA::after {
+            content: "Nội dung thêm vào phía sau bên trong thẻ";
+            color: orange;
+            font-size: 32px;
+        }
+    </style>
+</head>
+<body>
+
+    <pre>
+        ::before
+        ::after
+        thêm nội dung vào phía trước hay phía sau bên trong thẻ được chọn
+        để trang trí css nếu cần
+    </pre>
+
+    <div id="demoA">
+        Nội dung của thẻ div
+    </div>
+
+</body>
+</html>
