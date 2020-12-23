@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .clearfix::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        .wrap {
+            border: 1px solid red;
+        }
+
+        .wrap img {
+            float: left;
+        }
+    </style>
+</head>
+<body>
+
+    <pre>
+        khi sử dụng float thì sẽ gặp vấn đề
+        đó là thẻ con khi bị float thì trôi sang tay trái hay tay phải
+        và thẻ mẹ sẽ không chứa được thẻ con bị float
+        hay nói cách khác thì thẻ con có xu hướng thoát thẻ mẹ
+        giải pháp fix :
+
+        .clearfix::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        => thêm class clearfix vào cho thẻ cha đang chứa cái thẻ float
+
+    </pre>
+
+    <div class="wrap clearfix">
+        <img src="https://www.w3schools.com/css/pineapple.jpg" alt="" />
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci at dignissimos ducimus error et eveniet facilis hic incidunt ipsam, minus nesciunt porro quae quaerat qui quis similique sunt vero voluptates!
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci at dignissimos ducimus error et eveniet facilis hic incidunt ipsam, minus nesciunt porro quae quaerat qui quis similique sunt vero voluptates!
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci at dignissimos ducimus error et eveniet facilis hic incidunt ipsam, minus nesciunt porro quae quaerat qui quis similique sunt vero voluptates!
+    </div>
+
+</body>
+</html>
