@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .clearfix::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        .header {
+            height: 200px;
+            background-color: olive;
+        }
+
+        .footer {
+            height: 100px;
+            background-color: aquamarine;
+        }
+
+        .content .sidebar {
+            float: left;
+            height: 500px;
+            width: 30%;
+            background-color: orange;
+            padding: 20px;
+
+            box-sizing: border-box;
+        }
+
+        .content .main-content {
+            /*clear: left;*/
+            height: 500px;
+            background-color: greenyellow;
+            float: right;
+            width: 70%;
+
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrap">
+    <div class="header">
+        Header phần đầu của trang web
+    </div>
+
+    <div class="content clearfix">
+        <div class="sidebar">
+            Phần sidebar . nôi dung phụ của trang web
+            thường chứa menu hay quảng cáo . banner
+        </div>
+
+        <div class="main-content">
+            <h1>Nội dung chính của trang main content</h1>
+        </div>
+    </div>
+
+    <div class="footer">
+        Phần chân của trang web
+        thường chứa copyright bản quyền
+        địa chỉ thông tin liên hệ ...
+    </div>
+</div>
+
+<!--
+Khi 1 thẻ A nằm cạnh thẻ B
+mà thẻ A nó float:left hay float:right
+thì thẻ A kéo thẻ B trôi lên bên trên theo A
+chống lại việc thẻ A khi nó float kéo thẻ B
+thì chúng ta dùng thuộc tính clear
+
+nếu A có float:left thì dùng B clear:left
+nếu A co float:right thì dùng B clear: right
+nếu ko biết A float theo hướng nào thì cho thẻ B clear:both
+-->
+
+</body>
+</html>
