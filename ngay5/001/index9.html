@@ -28,6 +28,11 @@
             margin: 0;
             /* bỏ đi các dấu chấm tròn */
             list-style: none;
+            background-color: orange;
+        }
+
+        .wrap li {
+            position: relative;
         }
 
         .wrap ul li {
@@ -45,6 +50,29 @@
         .wrap ul li a:hover{
             background-color: greenyellow;
         }
+
+        .wrap .submenu {
+            padding: 20px;
+            background-color: greenyellow;
+            display: none;
+        }
+
+        .wrap .submenu li{
+            float: none;
+        }
+
+        /* chọn all thẻ li cấp 1 nằm trực tiếp trong thẻ ul
+        nhưng thẻ ul phải nằm trực tiếp trong thẻ nav */
+        .wrap nav > ul > li:hover .submenu{
+            display: block;
+        }
+
+        .wrap li .submenu {
+            position: absolute;
+            left: 0;
+            top: 48px;
+            min-width: 200px;
+        }
     </style>
 </head>
 <body>
@@ -58,7 +86,7 @@
             <ul class="clearfix">
                 <li>
                     <a href="">Thời sự</a>
-                    <ul>
+                    <ul class="submenu">
                         <li><a href="">Thời sự 1</a></li>
                         <li><a href="">Thời sự 2</a></li>
                         <li><a href="">Thời sự 3</a></li>
@@ -66,7 +94,7 @@
                 </li>
                 <li>
                     <a href="">Góc nhìn</a>
-                    <ul>
+                    <ul class="submenu">
                         <li><a href="">Góc nhìn 1</a></li>
                         <li><a href="">Góc nhìn 2</a></li>
                         <li><a href="">Góc nhìn 3</a></li>
@@ -74,7 +102,7 @@
                 </li>
                 <li>
                     <a href="">Thế giới</a>
-                    <ul>
+                    <ul class="submenu">
                         <li><a href="">Thế giới 1</a></li>
                         <li><a href="">Thế giới 2</a></li>
                         <li><a href="">Thế giới 3</a></li>
