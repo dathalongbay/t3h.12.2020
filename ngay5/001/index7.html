@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .divA, .divB, .divC {
+            width: 100px;
+            height: 100px;
+            color: white;
+        }
+
+        .divA {
+            background-color: orange;
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            z-index: 6;
+        }
+
+        .divB {
+            background-color: greenyellow;
+            position: absolute;
+            top: 50px;
+            left: 70px;
+            z-index: 5;
+        }
+
+        .divC {
+            background-color: red;
+            position: absolute;
+            top: 90px;
+            left: 110px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="divA">
+    divA
+</div>
+
+<div class="divB">
+    divB
+</div>
+
+<div class="divC">
+    divC
+</div>
+
+<pre>
+    https://www.w3schools.com/cssref/pr_pos_z-index.asp
+    thuộc tính z-index chỉ ra thứ tự sắp xếp theo không gian 3 chiều ( chiều sâu )
+    *z-index chỉ có tác dụng khi thuộc tính position khác mặc định static*
+    z-index có giá trị là số âm hay 1,2,3
+    z-index của thẻ nào lớn hơn thì nó nằm lên trên thẻ khác
+
+</pre>
+
+</body>
+</html>
