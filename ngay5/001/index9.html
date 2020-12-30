@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .clearfix::after {
+            display: block;
+            clear: both;
+            content: "";
+        }
+
+        .wrap {
+            width: 800px;
+            /* căn giữa trình duyệt */
+            margin: 0 auto;
+            font-size: 24px;
+        }
+
+        .wrap nav ul {
+            padding: 0;
+            margin: 0;
+            /* bỏ đi các dấu chấm tròn */
+            list-style: none;
+        }
+
+        .wrap ul li {
+            float: left;
+        }
+
+        .wrap ul li a{
+            display: inline-block;
+            background-color: orange;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+        }
+
+        .wrap ul li a:hover{
+            background-color: greenyellow;
+        }
+    </style>
+</head>
+<body>
+    <pre>
+        dropdown menu
+        sử dụng thẻ relative cha chứa absolute con
+    </pre>
+
+    <div class="wrap">
+        <nav>
+            <ul class="clearfix">
+                <li>
+                    <a href="">Thời sự</a>
+                </li>
+                <li>
+                    <a href="">Góc nhìn</a>
+                </li>
+                <li>
+                    <a href="">Thế giới</a>
+                </li>
+                <li>
+                    <a href="">Video</a>
+                </li>
+                <li>
+                    <a href="">Kinh doanh</a>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+
+
+
+</body>
+</html>
