@@ -42,6 +42,32 @@
             box-sizing: border-box;
         }
 
+        .col-2 .form-row {
+            padding: 10px;
+        }
+
+        .col-2 .form-row label {
+            width: 100px;
+            display: inline-block;
+            box-sizing: border-box;
+        }
+
+        .col-2 .form-row input[type="text"] {
+            padding: 6px 12px;
+            width: calc(100% - 110px);
+            box-sizing: border-box;
+        }
+
+        .create-account {
+            padding: 20px;
+            background-color: rgb(253, 216, 53);
+            color: rgb(74, 74, 74);
+            border: none;
+            width: 80%;
+            margin-left: 20%;
+            box-sizing: border-box;
+        }
+
     </style>
 </head>
 <body>
@@ -64,23 +90,27 @@
                 </div>
 
                 <div class="form-row">
-                    <label>Họ tên</label>
+                    <label>SĐT</label>
                     <input type="text">
                 </div>
 
                 <div class="form-row">
-                    <label>Họ tên</label>
+                    <label>Mã xác thực</label>
                     <input type="text">
                 </div>
 
                 <div class="form-row">
-                    <label>Họ tên</label>
+                    <label>Email</label>
                     <input type="text">
                 </div>
 
                 <div class="form-row">
-                    <label>Họ tên</label>
+                    <label>Mật khẩu</label>
                     <input type="text">
+                </div>
+
+                <div class="form-row">
+                    <button class="create-account">Tạo tài khoản</button>
                 </div>
             </form>
         </div>
