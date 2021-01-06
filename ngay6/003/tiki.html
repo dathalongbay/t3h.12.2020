@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .clearfix::after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        .wrapper {
+            width: 900px;
+            /* căn giữa trình duyệt */
+            margin: 0 auto;
+            border: 1px solid #ccc;
+        }
+
+        .col-1 {
+            float: left;
+            width: 40%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .col-1 img{
+            margin-top: 70px;
+            margin-bottom: 20px;
+        }
+
+        .col-2 {
+            float: right;
+            width: 60%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="wrapper clearfix">
+        <div class="col-1">
+            <h2>Tạo tài khoản</h2>
+            <p>Tạo tài khoản để theo dõi đơn hàng, lưu
+                danh sách sản phẩm yêu thích, nhận
+                nhiều ưu đãi hấp dẫn.</p>
+
+            <img src="https://frontend.tikicdn.com/_desktop-next/static/img/graphic-map.png" alt="">
+        </div>
+        <div class="col-2">
+            <h2>Tạo tài khoản</h2>
+            <form action="">
+                <div class="form-row">
+                    <label>Họ tên</label>
+                    <input type="text">
+                </div>
+
+                <div class="form-row">
+                    <label>Họ tên</label>
+                    <input type="text">
+                </div>
+
+                <div class="form-row">
+                    <label>Họ tên</label>
+                    <input type="text">
+                </div>
+
+                <div class="form-row">
+                    <label>Họ tên</label>
+                    <input type="text">
+                </div>
+
+                <div class="form-row">
+                    <label>Họ tên</label>
+                    <input type="text">
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
