@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style type="text/css">
+        .flex-container {
+            display: flex;
+            flex-flow: column wrap;
+            background-color: green;
+        }
+
+        .flex-container > div {
+            padding: 20px;
+            margin: 20px;
+            font-size: 18px;
+            background-color: yellowgreen;
+        }
+    </style>
+</head>
+<body>
+
+    <pre>
+        flex-flow là cách viết rút gọn của flex-direction và
+        flex-wrap
+
+        flex-flow: A B;
+        trong đó A là giá trị flex-direction
+        B là giá trị của flex-wrap
+
+    </pre>
+
+    <div class="flex-container">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+        <div>11</div>
+        <div>12</div>
+    </div>
+
+</body>
+</html>
