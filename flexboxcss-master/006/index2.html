@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style type="text/css">
+        .flex-container {
+            display: flex;
+            background-color: green;
+        }
+
+        .flex-container > div {
+            padding: 20px;
+            margin: 10px;
+            font-size: 18px;
+            background-color: yellowgreen;
+        }
+    </style>
+</head>
+<body>
+
+    <pre>
+        Thuộc tính flex-grow chỉ ra flex item sẽ tăng trưởng kích thước tương đối
+        so với flex item còn lại như thế nào .
+        Giá trị mặc định của thuộc tính flex-grow là 0
+    </pre>
+
+    <div class="flex-container">
+        <div style="flex-grow: 1">1</div>
+        <div style="flex-grow: 2">2</div>
+        <div style="flex-grow: 1">3</div>
+    </div>
+
+</body>
+</html>

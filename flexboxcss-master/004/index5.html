@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style type="text/css">
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            height: 600px;
+            align-content: flex-start;
+            background-color: green;
+        }
+
+        .flex-container > div {
+            padding: 40px;
+            margin-left: 20px;
+            margin-right: 20px;
+            margin-bottom: 2px;
+            font-size: 18px;
+            background-color: yellowgreen;
+        }
+    </style>
+</head>
+<body>
+
+    <pre>
+        align-content được sử dụng để căn chỉnh cho các dòng
+        flex ở bên trong flex container
+
+        trong ví dụ này thu 2 khoảng không gian nằm giữa
+        3 hàng flex khi chúng ta sử dụng
+         align-content: space-between;
+        align-content áp dụng cho các hàng flex trong flex container
+    </pre>
+
+    <h1> align-content: flex-start căn lên bên trên</h1>
+
+    <div class="flex-container">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+        <div>7</div>
+        <div>8</div>
+        <div>9</div>
+        <div>10</div>
+        <div>11</div>
+        <div>12</div>
+        <div>13</div>
+        <div>14</div>
+        <div>15</div>
+        <div>16</div>
+        <div>17</div>
+    </div>
+
+</body>
+</html>

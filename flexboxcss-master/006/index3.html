@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style type="text/css">
+        .flex-container {
+            display: flex;
+            flex-wrap: nowrap;
+            background-color: green;
+        }
+
+        .flex-container > div {
+            padding: 20px;
+            margin: 5px;
+            width: 100px;
+            font-size: 18px;
+            background-color: yellowgreen;
+        }
+    </style>
+</head>
+<body>
+
+<pre>
+    Thuộc tính flex-shrink chỉ ra flex item sẽ co lại tương đối như thế nào so với
+    flex item còn lại
+    Giá trị mặc đinh flex-shrink: 1;
+    flex-shrink ( co nhỏ lại ) chỉ có tác dụng khi mà
+    - kích thước của các tất cả các flex item cộng lại lớn hơn kích thước
+    flex container thì flex-shrink mới có tác dụng
+
+    - độ rộng flex container > tất cả các độ rộng của flex item
+    thì thuộc tính flex-shrink không có tác dụng
+</pre>
+
+    <div class="flex-container">
+        <div>1</div>
+        <div style="flex-shrink: 0">2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+
+
+    </div>
+
+</body>
+</html>

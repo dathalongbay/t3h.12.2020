@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style type="text/css">
+        .flex-container {
+            display: flex;
+            background-color: green;
+        }
+
+        .flex-container > div {
+            margin: 20px;
+            font-size: 18px;
+            background-color: yellowgreen;
+        }
+    </style>
+</head>
+<body>
+
+    <pre>
+       Thuộc tính flex cho các flex item
+        thuộc tính flex là thuộc tính rút gọn cho các thuộc tính
+        flex-grow , flex-shrink , flex-basis
+
+        flex: A B C;
+        trong đó A là giá trị flex-grow
+        B là giá trị flex-shrink
+        C là giá trị của flex-basis
+    </pre>
+
+<div class="flex-container">
+    <div>1</div>
+    <div>2</div>
+    <div style="flex: 0 0 300px">3</div>
+    <div>4</div>
+    <div>5</div>
+</div>
+
+</body>
+</html>
