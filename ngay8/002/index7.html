@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <pre>
+        các kiểu dữ liệu trong js
+        có 7 kiểu dữ liệu cần phải nhớ
+
+        if (điều kiện) {
+            // nếu điều kiện mà đúng thì thực hiện các câu lệnh
+            // trong {} đầu tiền
+        } else {
+            // nếu điều kiện mà sai thì thực hiện các câu lệnh
+            // trong {} sau lệnh else
+        }
+
+        toán từ = là phép gán
+        toán tử == là phép so sánh giá trị
+        ví dụ "5" == 5
+        toán tử === là phép so sánh tuyệt đối vừa so sánh giá trị
+        và vừa so sánh kiểu dữ liệu
+        "5" === 5
+    </pre>
+
+    <script>
+        // kiểu số
+        var a = 1;
+
+        // kiểu chuỗi
+        var b = "hello js";
+
+        // kiểu boolean
+        var c = true;
+        var d = false;
+
+        // kiểu undefined được tạo khi khai báo 1 biến ko gán giá trị
+        var e;
+
+        // kiểu mảng chứa được nhiều giá trị trong các phần tử
+        // phần tử phân tách bở dấu ,
+        var f = ["hà nội", "hải phòng", "nam định"];
+
+        // kiểu đối tượng object
+        var g = {};
+
+        // kiểu null nghĩa là ko gì cả
+        var m = null;
+
+        // kiểm tra kiểu dữ liệu trong 1 biến
+        // sử dụng lệnh typeof
+
+        console.log(typeof a);
+        console.log(typeof b);
+        console.log(typeof c);
+        console.log(typeof e);
+        console.log(typeof f);
+        console.log(typeof g);
+        console.log(typeof m);
+
+        // kiểu tra 1 biến có phải số hay không
+        if (typeof a == "number") {
+            console.log("a là kiểu số ");
+        }
+
+        // kiểu tra 1 biến có phải chuỗi hay không
+        if (typeof b == "string") {
+            console.log("b là kiểu chuỗi ");
+        }
+
+        // kiểu tra 1 biến có phải boolean hay không
+        if (typeof c == "boolean") {
+            console.log("c là kiểu boolean ");
+        }
+
+        // kiểu tra 1 biến có phải undefined hay không
+        if (typeof e == "undefined") {
+            console.log("e là kiểu undefined ");
+        }
+
+        // chú ý lệnh typeof ko kiểm tra được chính xác kiểu dữ liệu mảng
+        // ko nên sử dụng typeof kiểm tra object
+        // typeof null trả về object
+
+    </script>
+
+</body>
+</html>
