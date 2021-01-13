@@ -16,6 +16,41 @@
             background-color: #cccccc;
             margin: 0 auto;
         }
+
+        .container {
+            background-color: green;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            padding: 10px;
+        }
+        .container .item-box {
+            flex-basis: 33%;
+            padding: 20px;
+            background-color: orange;
+        }
+
+        img {
+            max-width: 100%;
+            width: 200px;
+        }
+
+        @media screen and (max-width: 800px) {
+            .container .item-box {
+                flex-basis: 50%;
+            }
+        }
+
+        @media screen and (max-width: 550px) {
+
+            .container {
+                flex-direction: column;
+            }
+            .container .item-box {
+                flex-basis: 100%;
+            }
+        }
+
     </style>
 
 
