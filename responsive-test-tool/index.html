@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <div class="address">
+        <input type="text" name="address" id="address" value="" style="width: 700px; border: 2px solid green">
+        <button id="test-btn">Test tool</button>
+        <button id="test-btn-pc">Test tool pc</button>
+    </div>
+    <div class="wrap" style="width: 900px">
+        <iframe id="ifr" src="https://landkit.goodthemes.co/" frameborder="0" style="width: 1300px; height: 700px">
+
+        </iframe>
+    </div>
+    <div class="wrap" style="width: 900px">
+        <iframe src="https://landkit.goodthemes.co/" frameborder="0" style="width: 375px; height: 700px">
+
+        </iframe>
+    </div>
+
+    <script>
+        // attach event to tag way ?
+        document.getElementById("test-btn").onclick = function () {
+          let address = document.getElementById("address").value;
+          document.getElementById("ifr").setAttribute("src", address);
+            document.getElementById("ifr").style.width = "375px";
+            document.getElementById('ifr').contentDocument.location.reload(true);
+        };
+
+        document.getElementById("test-btn-pc").onclick = function () {
+            let address = document.getElementById("address").value;
+            document.getElementById("ifr").setAttribute("src", address);
+            document.getElementById("ifr").style.width = "1375px";
+            document.getElementById('ifr').contentDocument.location.reload(true);
+        };
+    </script>
+</body>
+</html>
