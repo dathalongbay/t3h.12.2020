@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <pre>
+        mảng trong js chứa các phần tử
+        các phần tử trong mảng cấu tạo từ 2 thành phần
+        key và value
+        chỉ số và giá trị
+        var a = [];
+        chú ý key trong mảng bắt đầu 0
+    </pre>
+
+    <ul>
+        <li id="li1"></li>
+        <li id="li2"></li>
+        <li id="li3"></li>
+        <li id="li4"></li>
+    </ul>
+
+    <script>
+
+        var cities = ["hà nội", "hải phòng", "nam định" , "hưng yên"];
+        console.log(cities);
+
+        document.getElementById("li1").innerHTML = cities[0];
+        document.getElementById("li2").innerHTML = cities[1];
+        document.getElementById("li3").innerHTML = cities[2];
+        document.getElementById("li4").innerHTML = cities[3];
+
+        // muốn thay đổi giá trị của phần tử trong mảng
+        cities[0] = "thăng long";
+        console.log(cities);
+
+        // thêm 1 phần từ
+        cities[4] = "hải dương";
+        console.log(cities);
+
+    </script>
+
+
+
+</body>
+</html>
