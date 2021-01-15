@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        #target {
+            width: 150px;
+            height: 150px;
+            border: 1px solid red;
+            background-color: yellow;
+            color: #cccccc;
+        }
+
+    </style>
+</head>
+<body>
+
+    <pre style="font-size: 34px">
+        js & style css
+        truy cập css style
+        cú pháp
+        element.style.cssProperty
+        vd :
+        element.style.color, element.style.border
+
+        quy tắc gán style css bằng js ( bỏ đi dấu 0 và từ thứ 2 biến chứ cái đầu tiên
+        thành chữ viết hoa )
+        vd
+        background-color => backgroundColor
+        margin-top => marginTop
+    </pre>
+
+    <div id="target">
+
+    </div>
+
+    <button onclick="changeBackground('green')">Xanh</button>
+    <button onclick="changeBackground('red')">Đỏ</button>
+    <button onclick="changeBackground('violet')">Tím</button>
+    <button onclick="changeBackground('orange')">Da cam</button>
+
+    <button onclick="changeSize('+')">Phóng to</button>
+    <button onclick="changeSize('-')">Thu nhỏ</button>
+
+    <script>
+        function changeBackground(color) {
+            document.getElementById("target").style.backgroundColor = color;
+        }
+
+        function changeSize(size) {
+
+            // lấy ra chiều rộng và chiều cao hiện tại
+            var w = document.getElementById("target").clientWidth;
+            var h = document.getElementById("target").clientHeight;
+
+            //console.log(document.getElementById("target").style);
+            // ép kiểu về số nguyên
+            w = parseInt(w);
+            h = parseInt(h);
+
+            var ope;
+            if (size == "+") {
+                w = w + 100;
+                h = h + 100;
+            } else {
+                w = w - 100;
+                h = h - 100;
+            }
+
+            // nối thêm đơn vị px
+            document.getElementById("target").style.width = w + "px";
+            document.getElementById("target").style.height = h + "px";
+
+
+        }
+    </script>
+
+</body>
+</html>
