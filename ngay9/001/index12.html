@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <pre>
+        // lấy và thay đổi thuộc tính trong js
+        getAttribute(name)
+        setAttribute(name, value)
+    </pre>
+
+    <a id="a1" href="www.google.com" title="tìm kiếm google">google.com</a>
+
+    <script>
+        document.getElementById("a1").setAttribute("href", "www.facebook.com");
+        document.getElementById("a1").setAttribute("title", "trang facebook");
+        document.getElementById("a1").innerHTML = "Liên kết facebook";
+    </script>
+
+</body>
+</html>
