@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <pre>
+        bộ chọn theo tên thẻ html trong js
+        document.getElementsByTagName("tên thẻ html")
+        trả về HTMLCollection
+    </pre>
+
+    <a href="">Google</a>
+    <a href="">Facebook</a>
+    <a href="">Instagram</a>
+
+    <script>
+
+        var atag = document.getElementsByTagName("a");
+
+        console.log(atag);
+
+        document.getElementsByTagName("a")[0].innerHTML = "Google 1";
+        document.getElementsByTagName("a")[1].innerHTML = "Facebook 1";
+        document.getElementsByTagName("a")[2].innerHTML = "Instagram 1";
+
+    </script>
+
+</body>
+</html>
