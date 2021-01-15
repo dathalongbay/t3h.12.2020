@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <pre>
+        bộ chọn trong javascript ( javascript selector )
+        - chọn theo id
+        document.getElementById("id")
+        .innerText dùng lấy ra hoặc gán văn bản vào 1 thẻ
+    </pre>
+
+    <p id="p1">Nội dung của thẻ p1</p>
+
+    <script>
+        var p1 = document.getElementById("p1");
+
+        console.log(p1);
+
+        // láy ra nội dung văn bản hiển tại
+        var txtP1 = document.getElementById("p1").innerText;
+        console.log(txtP1);
+        // thay đổi nội dung bên trong thẻ theo id
+        document.getElementById("p1").innerText = "ngày 15.01.2021";
+
+    </script>
+
+
+</body>
+</html>
