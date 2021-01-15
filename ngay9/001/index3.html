@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <pre>
+        - giá trị mặc định cho tham số
+        function TenHam(para1 = 1, para2 = 2) {
+            // nội dung của hàm
+        }
+    </pre>
+
+    <script>
+        // gán giá trị mặc định cho tham số qua 1 dấu =
+        function tinhTong(a = 1, b = 1) {
+            console.log("a : " + a);
+            console.log("b : " + b);
+            var c;
+            c = a + b;
+            return c;
+        }
+
+        // gọi hàm 1 cách tự động
+        // khi load trang html thì chúng gọi hàm
+
+        // gọi hàm không truyền đối số
+        var e = tinhTong();
+        console.log("e là : " + e);
+
+        // gọi hàm có truyền đối số
+        var t = tinhTong(2,2);
+        console.log("t là : " + t);
+    </script>
+
+</body>
+</html>
