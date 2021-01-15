@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <pre>
+        tham số của hàm
+        đối số khi gọi hàm
+
+        - tham số của function
+        trong ví dụ tinhTong thì a và b được gọi là tham số ( parameter )
+        function tinhTong(a, b) {
+            // 2 tham số a và b chúng ta có thể sử dụng nó như biến
+            // trong function
+        }
+
+        - đối số
+        khi gọi hàm
+        var c = 2, d = 3;
+        tinhTong(c, d);
+        lúc này c và d là 2 đối số được truyền cho function
+        và đối số sẽ truyền giá trị cho tham số theo thứ tự
+        c truyền a
+        và d truyền cho b
+    </pre>
+
+    <script>
+        function tinhTong(a, b) {
+            var c;
+            c = a + b;
+            // để kết thúc và trả về giá trị trong function
+            // dùng từ khóa return để trả về biến hay giá trị
+            // chú ý : là từ khóa return kết thúc hàm
+            // nên các câu lệnh đằng sau return không được chạy
+            return c;
+        }
+
+        // gọi hàm
+        var e = 3, f = 6;
+        var kq = tinhTong(e, f);
+
+        // + trong js được sử dụng vừa để nối chuỗi
+        // vừa để thức hiện phép cộng
+        // khi cộng 2 số vào với nhau thì + là phép công
+        // nếu có ít nhất 1 số + 1 chuối thì + là phép nối chuỗi
+        // hay 1 chuối + 1 chuối thì + là phép nối chuỗi
+        document.write("kết quả là : " + kq);
+    </script>
+
+</body>
+</html>
