@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            margin: 100px auto;
+            width: 800px;
+            background-color: orange;
+            color: white;
+            padding: 20px;
+        }
+
+        .row {
+            margin: 20px 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <pre>
+        lấy hay thay đổi giá trị của các thành phần trong form
+    </pre>
+
+    <div class="container">
+        <div class="row">
+            <label for="">A</label>
+            <input type="text" name="a" value="">
+        </div>
+        <div class="row">
+            <label for="">B</label>
+            <input type="text" name="b" value="">
+        </div>
+        <div class="row">
+            <label for="">Operator</label>
+            <select name="operator" id="operator">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="/">/</option>
+                <option value="*">*</option>
+                <option value="%">%</option>
+            </select>
+        </div>
+
+        <div class="row">
+            <button id="print-btn" onclick="tinhToan()">In kết quả</button>
+        </div>
+    </div>
+
+    <script>
+        function tinhToan() {
+            // .value lấy ra giá trị trong input
+            var a = document.querySelectorAll("input[name='a']")[0].value;
+            var b = document.querySelectorAll("input[name='b']")[0].value;
+
+            /*
+            * document.querySelectorAll("input[name='a']")[0].value = "giá trị mới";
+            * */
+            
+            var c;
+
+            var ope = document.querySelectorAll("select[name='operator']")[0].value;
+
+            console.log(typeof a);
+            console.log(typeof b);
+            console.log(ope);
+
+            // ép kiểu string về số
+            a = parseFloat(a);
+            b = parseFloat(b);
+
+            if (ope == "+") {
+                c = a + b;
+            } else if (ope == "-") {
+                c = a - b;
+            } else if (ope == "*") {
+                c = a * b;
+            } else if (ope == "/") {
+                c = a / b;
+            } else {
+                // % phép chia lấy dư
+                c = a % b;
+            }
+
+            alert("kêt quả : " + c);
+        }
+    </script>
+
+</body>
+</html>
