@@ -69,9 +69,50 @@
     </div>
 </div>
 
-<div id="bancovuajs" class="wrap">
+<div id="bancovuajs" class="wrap" style="width: 800px; height: 800px">
     In ra bàn cờ vua js trong thẻ có #bancovuajs với 8*8 = 64 ô
+
+    <div class="cell cell1" style="top: 0; left: 0; background: greenyellow;">
+        cell 1
+    </div>
+
 </div>
 
+<script>
+    var html = "";
+    var topCss = 0;
+    var leftCss = 0;
+    var backgroundCss = "greenyellow";
+    var t = 0;
+    var row = 1;
+    var col = 1;
+    for (i = 1; i<= 64;i++) {
+
+        // 0 , 9 , 17 ,
+
+        t = i + 1;
+        if ((t % 8) != 0 ) {
+            leftCss = leftCss + 100;
+        }
+
+
+
+        if (i % 2 != 0) {
+            backgroundCss = "orange";
+        } else {
+            backgroundCss = "greenyellow";
+        }
+
+        html = html + "<div class=\"cell cell"+i+"\" style=\"top: "+topCss+"px; left: "+leftCss+"px; background: "+backgroundCss+";\">cell "+i+"</div>";
+
+        if ( (i % 8) == 0) {
+            // bắt đầu chu kỳ hàng mới
+            leftCss = 0;
+            row++;
+        }
+    }
+    document.getElementById("bancovuajs").innerHTML = html;
+
+</script>
 </body>
 </html>
