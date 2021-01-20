@@ -6,5 +6,59 @@
 </head>
 <body>
 
+    <pre>
+        cú pháp điều kiện trong js
+
+        1 - cú pháp rút gọn
+        if (điều kiện) {
+            //các câu lệnh sẽ chạy khi điều kiện đúng
+        }
+
+        2 - cú pháp if else
+        if (điều kiện) {
+            //các câu lệnh sẽ chạy khi điều kiện đúng
+        } else {
+            //các câu lệnh sẽ chạy khi điều kiện sai
+        }
+
+        3 - cú pháp if ... else if ... else
+        if (điều kiện 1) {
+            // các câu lệnh được chạy khi đk 1 đúng
+        } else if (điều kiện 2) {
+            // các câu lệnh được chạy khi đk 2 đúng
+        } else if (điều kiện 3) {
+            // các câu lệnh được chạy khi đk 3 đúng
+        } else if (điều kiện 4) {
+            // các câu lệnh được chạy khi đk 4 đúng
+        } else {
+            // các câu lệnh được chạy khi mà các điều kiện bên trên đều sai
+        }
+
+        4 - cú pháp rút gọn
+        (điều kiện) ? (câu lệnh chạy khi điều kiện đúng) : (câu lệnh chạy khi điều kiện sai) ;
+        - dùng khi mà câu lệnh thư thi trong {} của điều kiện if chỉ có 1 dòng duy nhất . và nó thường được dùng để gán giá trị cho biến khác
+    </pre>
+
+    <script>
+
+        var tuoi = 21;
+        var message;
+        var message2;
+        message = (tuoi >= 18) ? "người trưởng thành" : "trẻ em";
+        console.log(message);
+
+        if (tuoi >= 18) {
+            message2 = "người trưởng thành";
+        } else {
+            message2 = "trẻ em";
+        }
+        console.log(message2);
+    </script>
+
+
+
+
+
+
 </body>
 </html>
