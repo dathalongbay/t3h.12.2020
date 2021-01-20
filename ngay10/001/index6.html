@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<select name="ngay" id="ngay">
+
+</select>
+
+
+
+    <script>
+        var optionNgay = "";
+        var i;
+        for (i = 1; i <= 31; i++) {
+            // <option value="1">ngày 1</option>
+
+            // chuỗi trong js nháy đơn ' hay ""
+
+            // option = '<option value="'     +    i     +     ' ">Ngày' + i + '</option>';
+            optionNgay = optionNgay + '<option value="'+i+'">Ngày '+i+'</option>';
+
+            // thêm escape vào trước nhay kép bên trong chuỗi
+            // cách 2
+            // optionNgay = optionNgay + "<option value=\" " +i+ "  \">Ngày " +i+ "</option>";
+        }
+        console.log(optionNgay);
+        document.getElementById("ngay").innerHTML = optionNgay;
+    </script>
+</body>
+</html>
