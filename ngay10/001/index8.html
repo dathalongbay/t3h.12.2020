@@ -84,30 +84,38 @@
     var leftCss = 0;
     var backgroundCss = "greenyellow";
     var t = 0;
-    var row = 1;
-    var col = 1;
+    var row = 0;
+
     for (i = 1; i<= 64;i++) {
 
-        // 0 , 9 , 17 ,
-
-        t = i + 1;
-        if ((t % 8) != 0 ) {
-            leftCss = leftCss + 100;
+        leftCss = leftCss + 100;
+        if (((i-1) % 8) == 0) {
+            leftCss = 0;
         }
 
-
-
-        if (i % 2 != 0) {
-            backgroundCss = "orange";
+        // đổi màu
+        if (row % 2 == 0) {
+            if ( i % 2 != 0) {
+                backgroundCss = "orange";
+            } else {
+                backgroundCss = "greenyellow";
+            }
         } else {
-            backgroundCss = "greenyellow";
+            if ( i % 2 != 0) {
+                backgroundCss = "greenyellow";
+            } else {
+                backgroundCss = "orange";
+            }
         }
+
 
         html = html + "<div class=\"cell cell"+i+"\" style=\"top: "+topCss+"px; left: "+leftCss+"px; background: "+backgroundCss+";\">cell "+i+"</div>";
 
-        if ( (i % 8) == 0) {
+        if ( (i % 8) == 0 )  {
             // bắt đầu chu kỳ hàng mới
             leftCss = 0;
+            //
+            topCss = topCss + 100;
             row++;
         }
     }
