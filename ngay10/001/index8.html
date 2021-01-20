@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .wrap {
+            border: 2px solid red;
+            width: 400px;
+            height: 400px;
+
+            position: relative;
+
+            margin-top: 100px;
+            margin-left: 200px;
+
+        }
+
+        .wrap .cell {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+        }
+
+    </style>
+</head>
+<body>
+
+<pre>
+    đặt 1 thẻ luôn lấy thẻ mẹ của nó là gốc tọa độ để dịch chuyển
+    - bàn cờ vua có position là relative
+    - ô cờ vua có position absolute
+    absolute nằm trong relative thì luôn lấy vị trí thẻ mẹ để làm tọa độ
+
+    In ra 64 ô cờ vua dùng vòng lặp trong js
+
+
+</pre>
+
+<div class="wrap">
+    <div class="cell cell1" style="top: 0; left: 0; background: greenyellow;">
+        cell 1
+    </div>
+
+    <div class="cell cell2" style="top: 0; left: 100px; background: orange;">
+        cell 2
+    </div>
+
+    <div class="cell cell3" style="top: 0; left: 200px; background: greenyellow;">
+        cell 3
+    </div>
+
+    <div class="cell cell4" style="top: 0; left: 300px; background: orange;">
+        cell 4
+    </div>
+
+    <div class="cell cell5" style="top: 100px; left: 0px; background: orange;">
+        cell 5
+    </div>
+
+    <div class="cell cell6" style="top: 100px; left: 100px; background: greenyellow;">
+        cell 6
+    </div>
+</div>
+
+<div id="bancovuajs" class="wrap">
+    In ra bàn cờ vua js trong thẻ có #bancovuajs với 8*8 = 64 ô
+</div>
+
+</body>
+</html>
