@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <pre>
+        tự động gắn global
+    </pre>
+
+    <script>
+        // khai báo ngoài hàm là toàn cục
+        var a,b,c;
+
+        function demo(){
+
+            // khai báo trong hàm nên nó là biến cục bộ
+            var e1 = 5;
+
+            // gán giá trị cho 1 biến trong hàm
+            // nhưng biến đó lại chưa được khai báo
+            // thì biến này sẽ trở thành global
+            e2 = 1;
+
+        }
+
+
+        demo();
+        console.log("ngoài hàm : " + e2);
+
+    </script>
+
+</body>
+</html>
