@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <form id="form1" name="form1" action="https://www.w3schools.com/js/tryit.asp?filename=tryjs_date_current">
+        <div>
+            <label for="">Ho ten</label>
+            <input name="hoten" id="hoten" type="text">
+        </div>
+        <div>
+            <button>Submit</button>
+        </div>
+    </form>
+
+    <script>
+        document.getElementById("form1").onsubmit = function () {
+
+            var hoten = document.getElementById("hoten").value;
+            if (hoten == "") {
+                alert("chưa nhập họ tên");
+                // ko submit dữ liệu đi
+                return false;
+            }
+
+            // submit dữ liệu đi
+            alert("submit dữ liệu đi");
+        }
+
+    </script>
+
+</body>
+</html>
