@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <pre>
+        tính toán trong js
+        getTime() trả về số mili giây tính 1.1.1970
+        1s = 1000ms
+    </pre>
+
+    <script>
+        // tinh xem còn bao lâu đến tết âm lịch
+        var d1 = new Date();
+        var d1ms = d1.getTime();
+        document.writeln("<br>" + d1ms);
+
+        var d2 = new Date(2021, 1, 12);
+        var d2ms = d2.getTime();
+        document.writeln("<br>" + d2ms);
+
+        var distance = d2ms - d1ms;
+        document.writeln("<br> mili giây : " + distance);
+        var distanceS = distance/1000;
+        document.writeln("<br> giây : " + distanceS);
+        var distanceD = distanceS/(24*60*60);
+        document.writeln("<br> ngày : " + distanceD);
+
+
+
+    </script>
+
+</body>
+</html>
