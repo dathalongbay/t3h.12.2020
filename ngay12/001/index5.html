@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<pre>
+Kế thừa trong javascript
+Class cha và class con
+Class con kế thừa class cha
+extends là kế thừa
+class Meo extends DongVat {
+}
+</pre>
+  
+  <script>
+    
+    // class cha
+    class Car {
+      constructor(brand) {
+        this.carname = brand;
+      }
+      // method khác trong class Car
+      present() {
+        return 'I have a ' + this.carname;
+      }
+    }
+    
+    // class con
+    class Model extends Car {
+      // method khởi tạo class con 
+      constructor(brand, mod) {
+        // gọi đến constructor của class cha thông qua super()
+        super(brand);
+        this.model = mod;
+      }
+      // phương thức show()
+      show() {
+        // gọi đến method present() trong class cha từ bên trong 1 phương thức khác của class con
+        return this.present() + ', it is a ' + this.model;
+      }
+      
+    }
+    
+    var oto123 = new Model("vinfast", "fadil");
+    var intro = oto123.show();
+    document.write("<br>" + intro);
+    
+    
+    
+  </script>
+
+</body>
+</html>
