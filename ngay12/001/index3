@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Arrow Function</h1>
+<pre>
+ham mũi tên 
+ưu điểm : ngắn gọn hàm thông thường 
+</pre>
+  
+  <script>
+    
+    hello = () => {
+      return "Hello World!";
+    }
+    
+    // với các hàm chỉ có 1 dòng và có lệnh return cuối hàm thì có thể bỏ luôn {} chứa hàm và bỏ luôn return
+    hello = () => "Hello World!";
+ 
+    //
+    simple = (message) => {
+      document.write(message);
+    }
+    // hàm bên trên có chỉ 1 tham số là message
+    simple2 = message => {
+      document.write(message);
+    }
+  </script>
+
+</body>
+</html>
