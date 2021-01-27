@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+callback là 1 hàm được truyền vào 1 hàm khác như 1 đối số
+
+
+<script>
+function myDisplayer(some) {
+  console.log(some);
+}
+
+function myFirst(callback) {
+  
+  
+  setTimeout(function() {
+     myDisplayer("Hello");
+    
+    callback();
+    // mySecond();
+  }, 3000);
+ 
+  
+}
+
+function mySecond() {
+  myDisplayer("Goodbye");
+}
+// gọi lần 1
+myFirst(mySecond);
+
+</script>
+
+</body>
+</html>
