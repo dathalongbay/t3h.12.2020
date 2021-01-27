@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<body>
+"Producing code" is code that can take some time
+"Producing code" là 1 đoạn mã mà sẽ tiêu tốn 1 khoảng thời gian 
+
+"Consuming code" is code that must wait for the result
+"Consuming code" là đoạn code đợi kết quả thừ "Producing code"
+A Promise is a JavaScript object that links producing code and consuming code
+1 Promise là 1 đối tượng trong javascript mà liên kết quá trình sản xuất code và tiêu thụ code
+
+  
+  bước 1 : tạo đối tượng Promise bằng từ khóa new Promise()
+  bước 2 : truyền vao new Promise() 1 hàm vô danh là function(){}
+  bước 3 : hàm vô danh không có tên này có 2 tham số là resolve() và reject()
+  resolve() tượng trưng cho thành công
+  reject() tượng trưng cho quá trình thất bại 
+  
+  
+ 
+<script>
+  // sản xuất mã 
+  let myPromise = new Promise(function(resolve, reject){
+    
+    let x = 21;
+    if (x >= 18) {
+      resolve();
+    } else {
+      reject();
+    }
+  });
+  
+  // tiêu thụ mã
+  myPromise.then(function(){
+    console.log("thành công");
+  }, function() {
+    console.log("thất bại");
+  });
+
+
+</script>
+
+</body>
+</html>
