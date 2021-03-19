@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<?php 
+<?php
 echo "Nhúng php vào trong file html";
 ?>
 </body>
