@@ -8,12 +8,12 @@
     <title>Document</title>
 </head>
 <body>
-    <?php
-    $tuoi = 21;
-    if ($tuoi > 18) {
-        echo "<section>Tuoi lao dong</section>";
+<?php
+$tuoi = 21;
+if ($tuoi > 18) { ?>
+    <section>Tuoi lao dong</section>
 
-        echo '<p class="article-meta">
+    <p class="article-meta">
             <span class="article-publish">
                 <span class="friendly-time">2 giờ trước</span>
                 <span class="time">15:50</span>
@@ -27,12 +27,13 @@
             <a href="/thoi-su.html" title="Xã hội">
                 <span class="category">Xã hội</span>
             </a>
-           
-        </p>';
-    } else {
-        echo "<span>Tuoi tre em</span>";
 
-        echo '<p class="article-meta">
+        </p>
+<?php
+} else { ?>
+    <span>Tuoi tre em</span>
+
+    <p class="article-meta">
             <span class="article-publish">
                 <span class="friendly-time">2 giờ trước</span>
                 <span class="time">15:50</span>
@@ -46,10 +47,11 @@
             <a href="/thoi-su.html" title="Xã hội">
                 <span class="category">Xã hội</span>
             </a>
-           
-        </p>';
-    }
-    ?>
+
+        </p>
+<?php
+}
+?>
 
 </body>
 </html>
