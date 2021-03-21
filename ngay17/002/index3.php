@@ -41,6 +41,10 @@
     echo "<pre>";
     print_r($_POST);
     echo "</pre>";
+
+    // gán mặc định h va w
+    $h = $w = "";
+
     // isset() kiểm tra biến có tồn tại hay không
     if (isset($_POST["chieucao1"]) && isset($_POST["cannang1"])) {
         $h = $_POST["chieucao1"];
@@ -52,12 +56,12 @@
     <form name="bmi" action="" method="post">
         <div>
             <label for="">Chiều cao</label>
-            <input name="chieucao1" value="" type="text">
+            <input name="chieucao1" value="<?php echo $h ?>" type="text">
         </div>
 
         <div>
             <label for="">Cân năng</label>
-            <input name="cannang1" value="" type="text">
+            <input name="cannang1" value="<?php echo $w ?>" type="text">
         </div>
 
         <div>
@@ -68,8 +72,8 @@
     <?php if (isset($kq["bmi"]) && isset($kq["calc"])) { ?>
         <div>
             <h1>Kết quả</h1>
-            <div> Cân nặng : ?</div>
-            <div> Chiều cao : ?</div>
+            <div> Cân nặng : <?php echo $w ?></div>
+            <div> Chiều cao : <?php echo $h ?></div>
             <div> BMI : <?php echo $kq["bmi"] ?></div>
             <div> Phân loại : <?php echo $kq["calc"] ?></div>
         </div>
