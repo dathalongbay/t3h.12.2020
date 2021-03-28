@@ -104,6 +104,7 @@ if (isset($_POST) && count($_POST) > 0) {
             <label>Email</label>
             <input type="email" name="email" value="">
             part1@path2
+            //
             <span>* Email : tên email từ 3 đến 32 ký tự . trong email phải có
             chữ @ . phần domain tên miền có độ dài từ 3 đến 15 ký tự
             ví dụ : admin@gmail.com, admin@yahoo.ocm, admin@vhost.com</span>
