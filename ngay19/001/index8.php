@@ -18,7 +18,7 @@
 <?php
 
 // gán mặc định
-$ngaysinh = "";
+$ngaysinh = $hoten = "";
 
 if (isset($_POST) && count($_POST) > 0) {
     $validateAll = true;
@@ -29,6 +29,25 @@ if (isset($_POST) && count($_POST) > 0) {
 
     // mảng chứa lỗi
     $errorAll = [];
+
+
+    if (isset($_POST["hoten"]) && (strlen($_POST["hoten"]) > 0) ) {
+        $hoten = $_POST["hoten"];
+
+        // nhập ngày sinh
+        $patternHoten = '/^([a-zA-Z]+ ){1,4}([a-zA-Z]+){1}$/';
+
+        /*
+         * ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ
+         * */
+        if (preg_match($patternHoten, $hoten) != 1) {
+            // sai định dạng
+            $errorAll["hoten"] = "Họ tên sai định dạng";
+        }
+    } else {
+        // không tồn tại ngày sinh hay độ dài ngày sinh nhỏ hơn bằng 0
+        $errorAll["hoten"] = "Chưa nhập họ tên";
+    }
 
     if (isset($_POST["ngaysinh"]) && (strlen($_POST["ngaysinh"]) > 0) ) {
         $ngaysinh = $_POST["ngaysinh"];
@@ -76,7 +95,7 @@ if (isset($_POST) && count($_POST) > 0) {
     <form name="profile" method="post" action="">
         <div>
             <label for="">Họ tên</label>
-            <input type="text" name="hoten" value="">
+            <input type="text" name="hoten" value="<?php echo $hoten ?>">
             <span>* Họ tên : từ 2 chữ đến 5 chữ. chỉ chứa chuỗi không chứa số
             và các ký tự đặc biệt</span>
         </div>
@@ -84,6 +103,7 @@ if (isset($_POST) && count($_POST) > 0) {
         <div>
             <label>Email</label>
             <input type="email" name="email" value="">
+            part1@path2
             <span>* Email : tên email từ 3 đến 32 ký tự . trong email phải có
             chữ @ . phần domain tên miền có độ dài từ 3 đến 15 ký tự
             ví dụ : admin@gmail.com, admin@yahoo.ocm, admin@vhost.com</span>
@@ -112,7 +132,6 @@ if (isset($_POST) && count($_POST) > 0) {
         </div>
 
     </form>
-
 
 </body>
 </html>
