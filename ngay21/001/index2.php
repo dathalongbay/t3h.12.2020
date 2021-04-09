@@ -4,7 +4,6 @@ class DienThoaiCoDien {
 
     public $sodienthoai = 123;
 
-
     public function methodNghe() {
         // __METHOD__ trả về tên của phương thức trong class đang được gọi
         echo "<br>" . __METHOD__;
