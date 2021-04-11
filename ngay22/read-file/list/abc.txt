@@ -1,0 +1,5 @@
+dòng 1
+dòng 2
+dòng 3
+dòng 4
+dòng 5
