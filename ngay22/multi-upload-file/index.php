@@ -23,7 +23,6 @@
         print_r($_FILES);
         echo "</pre>";
 
-        die;
 
         $target_dir = "uploads/";
 
@@ -31,12 +30,23 @@
             mkdir($target_dir, 0777, true);
         }
 
+        // empty() kiểm tra 1 mảng hay 1 biễn có rỗng không nếu rỗng trả true nếu ko rỗng trả về false
+        //
         if (is_array($_FILES["uploadimage"]["name"]) && !empty($_FILES["uploadimage"]["name"])) {
+
+            // count() đếm số phần tử
             $countUploadFile = count($_FILES["uploadimage"]["name"]);
 
             for($i = 0; $i < $countUploadFile; $i++) {
+
+                // basename($_FILES["uploadimage"]["name"][0])
+                // basename($_FILES["uploadimage"]["name"][1])
+                // basename($_FILES["uploadimage"]["name"][2])
                 $target_file = $target_dir . basename($_FILES["uploadimage"]["name"][$i]);
 
+                // $_FILES["uploadimage"]["tmp_name"][0]
+                // $_FILES["uploadimage"]["tmp_name"][1]
+                // $_FILES["uploadimage"]["tmp_name"][2]
                 if (move_uploaded_file($_FILES["uploadimage"]["tmp_name"][$i], $target_file)) {
                     echo "<br> File ". htmlspecialchars( basename( $_FILES["uploadimage"]["name"][$i])). " đã được tải lên thành công.";
                 } else {
