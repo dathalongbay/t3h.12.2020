@@ -26,13 +26,19 @@
 
     if (isset($_POST["list"]) && $_POST["list"]) {
         // đường dẫn của file chúng ta đang muốn xem
+        // var_dump($_POST["list"]);
         $list = $dir.$_POST["list"];
         echo "<br>" . $list;
 
         // mỏ file ra để đọc
+        // $list la đường dẫn file
         $myfile = fopen($list, "r") or die("Unable to open file!");
         // filesize($list) trả về kích thước file
+
+        // filesize($list) trả về kích thước file
+        // fread cần 2 tham số đầu vào là đường dẫn file , kích thước file
         $content = fread($myfile,filesize($list));
+        // đóng file vào bằng fclose
         fclose($myfile);
     }
 ?>
@@ -51,11 +57,16 @@
                         foreach($listFiles as $f1) {
                             //echo "<br>" . $f1;
                             $except = [".", ".."];
-                            //if (!in_array($f1, $except)) {
+                            // in_array(giá trị, array) kiểm tra giá trị co tồn tại trong array hay không
+                            if (!in_array($f1, $except)) {
+                                $selected = "";
+                                if ($_POST["list"] == $f1) {
+                                    $selected = " selected";
+                                }
                                 ?>
-                                <option value="<?php echo $f1 ?>"><?php echo $f1 ?></option>
+                                <option value="<?php echo $f1 ?>" <?php echo $selected ?>><?php echo $f1 ?></option>
                                 <?php
-                            //}
+                            }
                         }
                         ?>
 
