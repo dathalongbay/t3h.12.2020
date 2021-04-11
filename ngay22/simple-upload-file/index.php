@@ -31,9 +31,11 @@
             mkdir($target_dir, 0777, true);
         }
 
-        echo "<br> *** : " . $_FILES["uploadimage"]["name"];
-        echo "<br> *** : " . basename($_FILES["uploadimage"]["name"]);
-
+        echo "<br> *** tên hình ảnh : " . $_FILES["uploadimage"]["name"];
+        $filename = "abc/abc123/". $_FILES["uploadimage"]["name"];
+        echo "<br>" . $filename;
+        echo "<br> *** basename() : " . basename($filename);
+        //die;
 
         // đường dẫn mà chúng ta muốn upload file đến
         $target_file = $target_dir . basename($_FILES["uploadimage"]["name"]);
@@ -44,11 +46,19 @@
         // move_uploaded_file("nguồn file", "đích đến của file");
         echo "<br> **** " .  $_FILES["uploadimage"]["tmp_name"];
         //die;
+        // move_uploaded_file dùng upload file
+        // move ( di chuyển ) file tạm đến đường dẫn file thật mà chung ta mong muốn
+        // tham số 1 là đường dẫn tạm $_FILES["uploadimage"]["tmp_name"]
+        // tham số 2 là đường dẫn thật chúng ta mong muốn $target_file
+        // nếu hàm này trả về true có nghĩa di chuyển file thành công
+        // false thì thất bại
         if (move_uploaded_file($_FILES["uploadimage"]["tmp_name"], $target_file)) {
             echo "File ". htmlspecialchars( basename( $_FILES["uploadimage"]["name"])). " đã được tải lên thành công.";
         } else {
             echo "Không thể upload file lên server do có lỗi";
         }
+
+        // htmlspecialchars()
 
     }
     ?>
@@ -69,6 +79,8 @@
             </div>
         </div>
     </div>
+
+    <div>in ra thẻ &lt;a&gt;thẻ a&lt;/a&gt;</div>
 
 
 
