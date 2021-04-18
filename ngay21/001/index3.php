@@ -4,6 +4,8 @@ class DienThoaiCoDien {
 
     public static $sodienthoai = 123;
 
+    const ABC = 912;
+
     public static function methodNghe() {
         // __METHOD__ trả về tên của phương thức trong class đang được gọi
         echo "<br>" . __METHOD__;
@@ -39,4 +41,9 @@ class DienThoaiCoDien {
 DienThoaiCoDien::methodNghe();
 
 DienThoaiCoDien::methodGoi();
+
+// thuộc tính tĩnh
+echo DienThoaiCoDien::$sodienthoai;
+// hằng số
+echo DienThoaiCoDien::ABC;
 
