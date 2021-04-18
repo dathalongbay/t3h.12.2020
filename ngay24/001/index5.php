@@ -72,6 +72,29 @@
  * )
  * */
 
+$sql = "CREATE TABLE students (
+student_id BIGINT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+ student_name VARCHAR(255) NOT NULL DEFAULT '',
+ student_score FLOAT(7,2) DEFAULT 0.00,
+ student_gender BIT(1) DEFAULT 1,
+ student_location TEXT,
+ student_birthday DATETIME,
+ created DATETIME,
+ updated DATETIME
+ )";
+
+
+$sql2 = "CREATE TABLE provinces (
+    province_code INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    province_name VARCHAR(255) NOT NULL DEFAULT '',
+    province_population BIGINT(20),
+    province_acreage INT(11),
+    province_density INT(11),
+    province_gdp FLOAT(11,2),
+    province_parent_id INT(11),
+    created DATETIME,
+    updated DATETIME
+)";
 
 
 
