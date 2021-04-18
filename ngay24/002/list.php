@@ -1,5 +1,20 @@
 <?php
 require_once "connect.php";
+
+$sqlSelect = "SELECT * FROM students";
+
+$stmt = $connection->prepare($sqlSelect);
+
+$stmt->execute();
+
+// set the resulting array to associative
+$result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+
+$list = $stmt->fetchAll();
+
+echo "<pre>";
+print_r($list);
+echo "</pre>";
 ?>
 <!doctype html>
 <html lang="en">

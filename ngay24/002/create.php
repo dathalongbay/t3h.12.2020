@@ -20,6 +20,20 @@ if (is_array($_POST) && !empty($_POST)) {
 
     echo $sqlInsert;
 
+    $resultInsert = $connection->exec($sqlInsert);
+    var_dump($resultInsert);
+
+    if ($resultInsert == 1) {
+        // insert thành công
+
+        header("Location: list.php");
+        exit();
+    }
+
+
+
+
+
 }
 ?>
 <!doctype html>
