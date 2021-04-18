@@ -1,5 +1,7 @@
 <?php
 
+// xem lại data type ở đây : https://www.javatpoint.com/mysql-data-types
+
 // chúng ta muốn tạo bảng thì chúng ta phải hiểu
 // là chúng ta đang tạo table trong CSDL nào
 
