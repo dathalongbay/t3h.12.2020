@@ -75,8 +75,8 @@ echo "</pre>";
                                 <td><?php echo $student->student_birthday ?></td>
                                 <td><?php echo $student->student_score ?></td>
                                 <td>
-                                    <a href="" class="btn btn-warning">Edit</a>
-                                    <a href="" class="btn btn-danger">Delete</a>
+                                    <a href="update.php?id=<?php echo $student->student_id ?>" class="btn btn-warning">Edit</a>
+                                    <a href="delete.php?id=<?php echo $student->student_id ?>" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
                             <?php
