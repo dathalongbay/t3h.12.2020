@@ -26,6 +26,10 @@ if (is_array($_POST) && !empty($_POST)) {
 
     echo "$sqlUpdate";
 
+    $resultUpdate = $connection->exec($sqlUpdate);
+
+    //
+
 
 }
 
@@ -93,7 +97,7 @@ if ($id > 0) {
                     // strtotime : chuyển 1 chuỗi thành 1 timestamp
                     $student_birthday = isset($student->student_birthday) ? strtotime($student->student_birthday) : 0;
                     // date() định dạng timestamp thành 1 chuỗi thời gian theo định dạng mới
-                    $new_birthday = date("d/m/Y", $student_birthday);
+                    $new_birthday = date("Y-m-d", $student_birthday);
                     //echo $new_birthday;
                     ?>
                     <input type="date" name="student_birthday" value="<?php echo $new_birthday ?>" class="form-control">
