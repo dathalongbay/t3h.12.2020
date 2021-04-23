@@ -3,13 +3,22 @@ require_once "connect.php";
 
 $sqlSelect = "SELECT * FROM students";
 
+// truyền câu sql truy vấn select vào trong method prepare() trên object connection
+// sau đó trả kết quả vào trong biến $stmt
 $stmt = $connection->prepare($sqlSelect);
 
+// biến $stmt gọi đến method execute() để thực thi câu SQL
 $stmt->execute();
 
 // set the resulting array to associative
-$result = $stmt->setFetchMode(PDO::FETCH_ASSOC);
+// setFetchMode() trên object $stmt chỉ định kiểu dữ liệu lấy ra từ db
+// PDO::FETCH_OBJ chỉ định mỗi bản ghi lấy ra là stdClass ( object )
+// $student->id
+// PDO::FETCH_ASSOC chỉ định mỗi bản ghi lấy ra là 1 array mảng
+// $student["id"]
+$result = $stmt->setFetchMode(PDO::FETCH_OBJ);
 
+// $stmt->fetchAll() để lấy ra tất cả dữ liệu tương ứng với câu SQL
 $list = $stmt->fetchAll();
 
 echo "<pre>";
@@ -38,7 +47,7 @@ echo "</pre>";
                 <h1>Danh sách sinh viên</h1>
 
                 <div style="margin: 20px">
-                    <a href="" class="btn btn-info">Thêm mới sinh viên</a>
+                    <a href="create.php" class="btn btn-info">Thêm mới sinh viên</a>
                 </div>
                 <table class="table">
                     <thead>
@@ -52,17 +61,30 @@ echo "</pre>";
                     </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>ABC</td>
-                            <td>hà nội</td>
-                            <td>12/12/1995</td>
-                            <td>9.5</td>
-                            <td>
-                                <a href="" class="btn btn-warning">Edit</a>
-                                <a href="" class="btn btn-danger">Delete</a>
-                            </td>
-                        </tr>
+
+                    <?php
+                    if (is_array($list) && !empty($list)) {
+                        foreach($list as $keyStudent => $student) {
+                            // $student
+                            ?>
+
+                            <tr>
+                                <td><?php echo $student->student_id ?></td>
+                                <td><?php echo $student->student_name ?></td>
+                                <td><?php echo $student->student_location ?></td>
+                                <td><?php echo $student->student_birthday ?></td>
+                                <td><?php echo $student->student_score ?></td>
+                                <td>
+                                    <a href="" class="btn btn-warning">Edit</a>
+                                    <a href="" class="btn btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                            <?php
+                        } // end foreach
+                    } // end if
+                    ?>
+
+
 
                     </tbody>
                 </table>
