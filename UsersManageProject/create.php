@@ -95,6 +95,7 @@ if (is_array($_POST) & !empty($_POST)) {
     }
 
     if (isset($_POST['user_address']) && strlen($_POST['user_address']) > 0) {
+        // ha noi viet
         $user_address_arr = explode(" ", $_POST['user_address']);
         if (count($user_address_arr) > 200) {
             $errors_validate["user_address"] = "user_address được nhập tối đa 200 chữ";
@@ -106,6 +107,7 @@ if (is_array($_POST) & !empty($_POST)) {
     }
 
     if (isset($_POST['user_birthday']) && strlen($_POST['user_birthday']) > 0) {
+        // YYYY-MM-DD
         $pattern_user_birthday = '/^\d{4}-\d{2}-\d{2}$/';
         if (preg_match($pattern_user_birthday, $_POST['user_birthday']) != 1) {
             $errors_validate["user_birthday"] = "user_birthday sai định dạng";
@@ -153,15 +155,18 @@ if (is_array($_POST) & !empty($_POST)) {
 
     // check duplicate user_name, user_email, user_phone
     if (empty($errors_validate)) {
-        $sqlCheckDuplicate = "SELECT COUNT(*) FROM users WHERE user_name = '$user_name' OR user_email = '$user_email' OR user_phone = '$user_phone'";
+        $sqlCheckDuplicate = "SELECT COUNT(*) AS total FROM users WHERE user_name = '$user_name' OR user_email = '$user_email' OR user_phone = '$user_phone'";
         $stmt = $connection->prepare($sqlCheckDuplicate);
         $stmt->execute();
         $result = $stmt->setFetchMode(PDO::FETCH_OBJ);
 // lấy 1 bản ghi duy nhất ->fetchObject()
         $duplicate = $stmt->fetchObject();
         var_dump($sqlCheckDuplicate);
+        echo "<pre>";
+        print_r($duplicate);
+        echo "</pre>";
         var_dump($duplicate);
-        if ($duplicate > 0) {
+        if ($duplicate->total > 0) {
             $errors_validate["duplicate"] = "Username hay email hay số điện thoại này đã được sử dụng vui lòng nhập thông tin Username/email/số điện thoại chưa được sử dụng";
         }
 
@@ -175,6 +180,8 @@ if (is_array($_POST) & !empty($_POST)) {
 
         $user_avatar = $target_file;
         $user_desc = isset($_POST['user_desc']) ? $_POST['user_desc'] : "";
+
+        $user_password = md5($user_password);
 
         $sqlInsert = "INSERT INTO `users` ( `user_name`, `first_name`, `last_name`, `user_email`, `user_gender`, `user_phone`, `user_address`, `user_password`, `user_avatar`, `user_birthday`, `user_desc`, `created`, `updated`) VALUES ( '$user_name', '$first_name', '$last_name', '$user_email', $user_gender, '$user_phone', '$user_address', '$user_password', '$user_avatar', '$user_birthday', '$user_desc' , '$created', '$updated');";
 
