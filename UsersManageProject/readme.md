@@ -6,6 +6,7 @@
 - tích hợp chức năng validate dữ liệu khi nhập thêm mới / sửa người dùng
 - tích hợp chức năng phân trang 
 - tích hợp chức năng tìm kiếm người dùng theo tên/email/số điện thoại 
+- tích hợp chức năng bảo mật chống XSS và SQL Injection 
 
 1 - xây dựng CSDL cho quan trị người dùng
 + UsersManageProject ( tên CSDL )
