@@ -32,6 +32,8 @@ if (is_array($_POST) & !empty($_POST)) {
         $pattern_user_name = '/^.{6,32}$/';
         if (preg_match($pattern_user_name, $_POST['user_name']) != 1) {
             $errors_validate["user_name"] = "user_name sai định dạng";
+        } else {
+            $user_name = $_POST['user_name'];
         }
     } else {
         $errors_validate["user_name"] = "Yêu cầu nhập user_name";
@@ -41,6 +43,8 @@ if (is_array($_POST) & !empty($_POST)) {
         $pattern_last_name = '/^([a-zA-Z]+ ){0,2}([a-zA-Z]+){1}$/';
         if (preg_match($pattern_last_name, $_POST['last_name']) != 1) {
             $errors_validate["last_name"] = "last_name sai định dạng";
+        } else {
+            $last_name = $_POST['last_name'];
         }
     } else {
         $errors_validate["last_name"] = "Yêu cầu nhập last_name";
@@ -50,6 +54,8 @@ if (is_array($_POST) & !empty($_POST)) {
         $pattern_first_name = '/^([a-zA-Z]+ ){0,1}([a-zA-Z]+){1}$/';
         if (preg_match($pattern_first_name, $_POST['first_name']) != 1) {
             $errors_validate["first_name"] = "first_name sai định dạng";
+        } else {
+            $first_name = $_POST['first_name'];
         }
     } else {
         $errors_validate["first_name"] = "Yêu cầu nhập first_name";
@@ -59,6 +65,8 @@ if (is_array($_POST) & !empty($_POST)) {
         $pattern_user_phone = '/^\d{6,32}$/';
         if (preg_match($pattern_user_phone, $_POST['user_phone']) != 1) {
             $errors_validate["user_phone"] = "user_phone sai định dạng";
+        } else {
+            $user_phone = $_POST['user_phone'];
         }
     } else {
         $errors_validate["user_phone"] = "Yêu cầu nhập user_phone";
@@ -68,6 +76,8 @@ if (is_array($_POST) & !empty($_POST)) {
         $pattern_user_password = '/^(?=.*?[A-Z])(?=.*?[0-9]).{8,32}$/';
         if (preg_match($pattern_user_password, $_POST['user_password']) != 1) {
             $errors_validate["user_password"] = "user_password sai định dạng";
+        } else {
+            $user_password = $_POST['user_password'];
         }
     } else {
         $errors_validate["user_password"] = "Yêu cầu nhập user_password";
@@ -77,6 +87,8 @@ if (is_array($_POST) & !empty($_POST)) {
         $pattern_user_email = '/^[A-Za-z0-9]{6,64}@.+\..+$/';
         if (preg_match($pattern_user_email, $_POST['user_email']) != 1) {
             $errors_validate["user_email"] = "user_email sai định dạng";
+        } else {
+            $user_email = $_POST['user_email'];
         }
     } else {
         $errors_validate["user_email"] = "Yêu cầu nhập user_email";
@@ -86,6 +98,8 @@ if (is_array($_POST) & !empty($_POST)) {
         $user_address_arr = explode(" ", $_POST['user_address']);
         if (count($user_address_arr) > 200) {
             $errors_validate["user_address"] = "user_address được nhập tối đa 200 chữ";
+        } else {
+            $user_address = $_POST['user_address'];
         }
     } else {
         $errors_validate["user_address"] = "Yêu cầu nhập user_address";
@@ -95,6 +109,8 @@ if (is_array($_POST) & !empty($_POST)) {
         $pattern_user_birthday = '/^\d{4}-\d{2}-\d{2}$/';
         if (preg_match($pattern_user_birthday, $_POST['user_birthday']) != 1) {
             $errors_validate["user_birthday"] = "user_birthday sai định dạng";
+        } else {
+            $user_birthday = $_POST['user_birthday'];
         }
     } else {
         $errors_validate["user_birthday"] = "Yêu cầu nhập user_birthday";
@@ -103,9 +119,76 @@ if (is_array($_POST) & !empty($_POST)) {
     if (isset($_POST['user_gender'])) {
         if (!in_array($_POST['user_gender'], [0,1])) {
             $errors_validate["user_gender"] = "user_gender sai định dạng";
+        } else {
+            $user_gender = (int)$_POST['user_gender'];
         }
     } else {
         $errors_validate["user_gender"] = "Yêu cầu nhập user_gender";
+    }
+
+    echo "<pre>";
+    print_r($_FILES);
+    echo "</pre>";
+
+    if (isset($_FILES["user_avatar"]["name"]) && isset($_FILES["user_avatar"]["tmp_name"])) {
+        if (strlen($_FILES["user_avatar"]["name"]) > 0 && strlen($_FILES["user_avatar"]["tmp_name"]) > 0 && strlen($_FILES["user_avatar"]["size"]) > 0) {
+            $target_dir = "uploads/";
+
+            if (!file_exists($target_dir)) {
+                mkdir($target_dir, 0777, true);
+            }
+            $target_file = $target_dir . basename($_FILES["user_avatar"]["name"]);
+            if (move_uploaded_file($_FILES["user_avatar"]["tmp_name"], $target_file)){
+                $uploadOK = 1;
+            } else {
+                $errors_validate["user_avatar"] = "Upload user_avatar thất bại";
+            }
+        } else {
+            $errors_validate["user_avatar"] = "Yêu cầu nhập user_avatar";
+        }
+    } else {
+        $errors_validate["user_avatar"] = "Yêu cầu nhập user_avatar";
+    }
+
+
+    // check duplicate user_name, user_email, user_phone
+    if (empty($errors_validate)) {
+        $sqlCheckDuplicate = "SELECT COUNT(*) FROM users WHERE user_name = '$user_name' OR user_email = '$user_email' OR user_phone = '$user_phone'";
+        $stmt = $connection->prepare($sqlCheckDuplicate);
+        $stmt->execute();
+        $result = $stmt->setFetchMode(PDO::FETCH_OBJ);
+// lấy 1 bản ghi duy nhất ->fetchObject()
+        $duplicate = $stmt->fetchObject();
+        var_dump($sqlCheckDuplicate);
+        var_dump($duplicate);
+        if ($duplicate > 0) {
+            $errors_validate["duplicate"] = "Username hay email hay số điện thoại này đã được sử dụng vui lòng nhập thông tin Username/email/số điện thoại chưa được sử dụng";
+        }
+
+    }
+
+    if (empty($errors_validate)) {
+        $user_birthday .= " 00:00:01";
+
+        $created = date("Y-m-d H:i:s");
+        $updated = date("Y-m-d H:i:s");
+
+        $user_avatar = $target_file;
+        $user_desc = isset($_POST['user_desc']) ? $_POST['user_desc'] : "";
+
+        $sqlInsert = "INSERT INTO `users` ( `user_name`, `first_name`, `last_name`, `user_email`, `user_gender`, `user_phone`, `user_address`, `user_password`, `user_avatar`, `user_birthday`, `user_desc`, `created`, `updated`) VALUES ( '$user_name', '$first_name', '$last_name', '$user_email', $user_gender, '$user_phone', '$user_address', '$user_password', '$user_avatar', '$user_birthday', '$user_desc' , '$created', '$updated');";
+
+        echo $sqlInsert;
+
+        $resultInsert = $connection->exec($sqlInsert);
+        var_dump($resultInsert);
+
+        if ($resultInsert == 1) {
+            // insert thành công
+
+            //header("Location: index.php");
+            //exit();
+        }
     }
 }
 ?>
