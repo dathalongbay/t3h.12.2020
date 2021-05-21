@@ -1,6 +1,29 @@
 <?php
 require_once "connection.php";
 
+$sqlCount = "SELECT COUNT(*) AS total FROM users";
+$stmtCount = $connection->prepare($sqlCount);
+$stmtCount->execute();
+$resultCount = $stmtCount->setFetchMode(PDO::FETCH_OBJ);
+// tổng số bản ghi
+$count = $stmtCount->fetchColumn();
+// giới hạn số bản ghi mỗi trang
+$limitRecord = 10;
+// tổng số trang làm tròn 9.1 => 10 trang thông qua ceil()
+$pageTotal = ($count/$limitRecord);
+$pageTotal = ceil($pageTotal);
+
+// page hiện tại
+$curPage = isset($_GET["curPage"]) ? (int)$_GET["curPage"] : 1;
+$curPage = $curPage-1;
+$start = ($limitRecord*$curPage);
+// page 1 : start 0
+// page 2 : start 10
+// page 3 : start 20
+
+
+
+
 // SELECT * FROM users WHERE id > 0 LIMIT start,limit
 // start là thứ tự bản ghi bắt đầu
 // limit là số lượng bản ghi chúng ta lấy ra 1 lần
@@ -11,7 +34,9 @@ require_once "connection.php";
 // trang 3 SELECT * FROM users LIMIT 20,10
 // trang 4 SELECT * FROM users LIMIT 30,10
 // trang 5 SELECT * FROM users LIMIT 40,10
-$sqlSelect = "SELECT * FROM users";
+$sqlSelect = "SELECT * FROM users LIMIT $start,$limitRecord";
+
+echo "<br> sql phân trang : " . $sqlSelect;
 
 // truyền câu sql truy vấn select vào trong method prepare() trên object connection
 // sau đó trả kết quả vào trong biến $stmt
@@ -30,10 +55,6 @@ $result = $stmt->setFetchMode(PDO::FETCH_OBJ);
 
 // $stmt->fetchAll() để lấy ra tất cả dữ liệu tương ứng với câu SQL
 $users = $stmt->fetchAll();
-
-echo "<pre>";
-print_r($users);
-echo "</pre>";
 
 ?>
 <!doctype html>
@@ -99,6 +120,38 @@ echo "</pre>";
 
                 </tbody>
             </table>
+
+
+            <?php
+
+            // hoàn trả 1 cho biến $curPage
+            $curPage = $curPage + 1;
+            $previous = ($curPage > 1) ? $curPage - 1 : 0;
+            $next = $curPage + 1;
+            ?>
+            <ul class="pagination">
+                <?php if ($previous > 0) {
+                    ?> <li class="page-item"><a class="page-link" href="index.php?curPage=<?php echo $previous ?>">Previous</a></li> <?php
+                } ?>
+
+                <?php for($page = 1; $page <= $pageTotal; $page++) {
+                    $pageClassAction = "";
+
+                    if ($curPage == $page) {
+                        $pageClassAction = " active";
+                    }
+                    ?>
+                    <li class="page-item <?php echo $pageClassAction ?>"><a class="page-link " href="index.php?curPage=<?php echo $page ?>"><?php echo $page ?></a></li>
+                    <?php
+                } // end for ?>
+                <?php if($next < $page) {
+                    ?>
+                    <li class="page-item"><a class="page-link" href="index.php?curPage=<?php echo $next ?>">Next</a></li>
+                    <?php
+                } ?>
+
+            </ul>
+
         </div>
     </div>
 </div>

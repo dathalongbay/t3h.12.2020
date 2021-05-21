@@ -186,15 +186,15 @@ if (is_array($_POST) & !empty($_POST)) {
 
         $user_password = md5($user_password);
 
-        for($i = 1; $i < 100; $i++) {
-            $user_name_index = $i.$user_name;
-            $sqlInsert = "INSERT INTO `users` ( `user_name`, `first_name`, `last_name`, `user_email`, `user_gender`, `user_phone`, `user_address`, `user_password`, `user_avatar`, `user_birthday`, `user_desc`, `created`, `updated`) VALUES ( '$user_name_index', '$first_name', '$last_name', '$user_email', $user_gender, '$user_phone', '$user_address', '$user_password', '$user_avatar', '$user_birthday', '$user_desc' , '$created', '$updated');";
+        //for($i = 1; $i < 100; $i++) {
+            //$user_name_index = $i.$user_name;
+            $sqlInsert = "INSERT INTO `users` ( `user_name`, `first_name`, `last_name`, `user_email`, `user_gender`, `user_phone`, `user_address`, `user_password`, `user_avatar`, `user_birthday`, `user_desc`, `created`, `updated`) VALUES ( '$user_name', '$first_name', '$last_name', '$user_email', $user_gender, '$user_phone', '$user_address', '$user_password', '$user_avatar', '$user_birthday', '$user_desc' , '$created', '$updated');";
 
             echo "<br>" . $sqlInsert;
 
             $resultInsert = $connection->exec($sqlInsert);
 
-        }
+        //}
 
 
         var_dump($resultInsert);
