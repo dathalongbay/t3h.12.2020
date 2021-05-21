@@ -30,6 +30,7 @@ if (is_array($_POST) & !empty($_POST)) {
     // validate dữ liệu
     if (isset($_POST['user_name']) && strlen($_POST['user_name']) > 0) {
         $pattern_user_name = '/^.{6,32}$/';
+
         if (preg_match($pattern_user_name, $_POST['user_name']) != 1) {
             $errors_validate["user_name"] = "user_name sai định dạng";
         } else {
@@ -85,11 +86,13 @@ if (is_array($_POST) & !empty($_POST)) {
 
     if (isset($_POST['user_email']) && strlen($_POST['user_email']) > 0) {
         $pattern_user_email = '/^[A-Za-z0-9]{6,64}@.+\..+$/';
-        if (preg_match($pattern_user_email, $_POST['user_email']) != 1) {
+       /* if (preg_match($pattern_user_email, $_POST['user_email']) != 1) {
             $errors_validate["user_email"] = "user_email sai định dạng";
         } else {
             $user_email = $_POST['user_email'];
-        }
+        }*/
+
+        $user_email = $_POST['user_email'];
     } else {
         $errors_validate["user_email"] = "Yêu cầu nhập user_email";
     }
@@ -183,11 +186,17 @@ if (is_array($_POST) & !empty($_POST)) {
 
         $user_password = md5($user_password);
 
-        $sqlInsert = "INSERT INTO `users` ( `user_name`, `first_name`, `last_name`, `user_email`, `user_gender`, `user_phone`, `user_address`, `user_password`, `user_avatar`, `user_birthday`, `user_desc`, `created`, `updated`) VALUES ( '$user_name', '$first_name', '$last_name', '$user_email', $user_gender, '$user_phone', '$user_address', '$user_password', '$user_avatar', '$user_birthday', '$user_desc' , '$created', '$updated');";
+        for($i = 1; $i < 100; $i++) {
+            $user_name_index = $i.$user_name;
+            $sqlInsert = "INSERT INTO `users` ( `user_name`, `first_name`, `last_name`, `user_email`, `user_gender`, `user_phone`, `user_address`, `user_password`, `user_avatar`, `user_birthday`, `user_desc`, `created`, `updated`) VALUES ( '$user_name_index', '$first_name', '$last_name', '$user_email', $user_gender, '$user_phone', '$user_address', '$user_password', '$user_avatar', '$user_birthday', '$user_desc' , '$created', '$updated');";
 
-        echo $sqlInsert;
+            echo "<br>" . $sqlInsert;
 
-        $resultInsert = $connection->exec($sqlInsert);
+            $resultInsert = $connection->exec($sqlInsert);
+
+        }
+
+
         var_dump($resultInsert);
 
         if ($resultInsert == 1) {
