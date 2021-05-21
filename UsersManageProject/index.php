@@ -1,7 +1,18 @@
 <?php
 require_once "connection.php";
 
-$sqlCount = "SELECT COUNT(*) AS total FROM users";
+
+echo "<pre>";
+print_r($_SERVER['QUERY_STRING']);
+echo "</pre>";
+
+$keyword = (isset($_GET["keyword"]) && $_GET["keyword"]) ? $_GET["keyword"] : "";
+if (strlen($keyword) > 0) {
+    $sqlCount = "SELECT COUNT(*) AS total FROM users WHERE user_name LIKE '%$keyword%' OR user_phone LIKE '%$keyword%'";
+} else {
+    $sqlCount = "SELECT COUNT(*) AS total FROM users";
+}
+
 $stmtCount = $connection->prepare($sqlCount);
 $stmtCount->execute();
 $resultCount = $stmtCount->setFetchMode(PDO::FETCH_OBJ);
@@ -34,7 +45,12 @@ $start = ($limitRecord*$curPage);
 // trang 3 SELECT * FROM users LIMIT 20,10
 // trang 4 SELECT * FROM users LIMIT 30,10
 // trang 5 SELECT * FROM users LIMIT 40,10
-$sqlSelect = "SELECT * FROM users LIMIT $start,$limitRecord";
+if (strlen($keyword) > 0) {
+    $sqlSelect = "SELECT * FROM users WHERE user_name LIKE '%$keyword%' OR user_phone LIKE '%$keyword%' LIMIT $start,$limitRecord";
+} else {
+    $sqlSelect = "SELECT * FROM users LIMIT $start,$limitRecord";
+}
+
 
 echo "<br> sql phân trang : " . $sqlSelect;
 
@@ -81,6 +97,13 @@ $users = $stmt->fetchAll();
             <div style="margin: 20px">
                 <a href="create.php" class="btn btn-info">Thêm mới người dùng</a>
             </div>
+            <div style="margin: 20px">
+                <form action="" method="get" name="search">
+                    <input type="text" name="keyword" value="<?php echo $keyword ?>">
+                    <button class="btn btn-primary">Tìm kiếm </button>
+                </form>
+            </div>
+
             <table class="table">
                 <thead>
                 <tr>
@@ -131,7 +154,11 @@ $users = $stmt->fetchAll();
             ?>
             <ul class="pagination">
                 <?php if ($previous > 0) {
-                    ?> <li class="page-item"><a class="page-link" href="index.php?curPage=<?php echo $previous ?>">Previous</a></li> <?php
+                    $tmp = $_GET;
+                    $tmp["curPage"] = $previous;
+                    // http_build_query() chuyển 1 mảng thành query string url đúng
+                    $linkPrevious = "index.php?".http_build_query($tmp);
+                    ?> <li class="page-item"><a class="page-link" href="<?php echo $linkPrevious ?>">Previous</a></li> <?php
                 } ?>
 
                 <?php for($page = 1; $page <= $pageTotal; $page++) {
@@ -140,13 +167,19 @@ $users = $stmt->fetchAll();
                     if ($curPage == $page) {
                         $pageClassAction = " active";
                     }
+                    $tmp = $_GET;
+                    $tmp["curPage"] = $page;
+                    $linkPage = "index.php?".http_build_query($tmp);
                     ?>
-                    <li class="page-item <?php echo $pageClassAction ?>"><a class="page-link " href="index.php?curPage=<?php echo $page ?>"><?php echo $page ?></a></li>
+                    <li class="page-item <?php echo $pageClassAction ?>"><a class="page-link " href="<?php echo $linkPage ?>"><?php echo $page ?></a></li>
                     <?php
                 } // end for ?>
                 <?php if($next < $page) {
+                    $tmp = $_GET;
+                    $tmp["curPage"] = $next;
+                    $linkNext = "index.php?".http_build_query($tmp);
                     ?>
-                    <li class="page-item"><a class="page-link" href="index.php?curPage=<?php echo $next ?>">Next</a></li>
+                    <li class="page-item"><a class="page-link" href="<?php echo $linkNext ?>">Next</a></li>
                     <?php
                 } ?>
 
