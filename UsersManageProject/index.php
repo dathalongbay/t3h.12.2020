@@ -45,10 +45,12 @@ $start = ($limitRecord*$curPage);
 // trang 3 SELECT * FROM users LIMIT 20,10
 // trang 4 SELECT * FROM users LIMIT 30,10
 // trang 5 SELECT * FROM users LIMIT 40,10
+$orderBy = (isset($_GET["orderby"]) && $_GET["orderby"]) ? $_GET["orderby"] : "user_id";
+$orderDir = (isset($_GET["orderdir"]) && $_GET["orderdir"]) ? $_GET["orderdir"] : "ASC";
 if (strlen($keyword) > 0) {
-    $sqlSelect = "SELECT * FROM users WHERE user_name LIKE '%$keyword%' OR user_phone LIKE '%$keyword%' LIMIT $start,$limitRecord";
+    $sqlSelect = "SELECT * FROM users WHERE user_name LIKE '%$keyword%' OR user_phone LIKE '%$keyword%' ORDER BY $orderBy $orderDir LIMIT $start,$limitRecord";
 } else {
-    $sqlSelect = "SELECT * FROM users LIMIT $start,$limitRecord";
+    $sqlSelect = "SELECT * FROM users ORDER BY $orderBy $orderDir LIMIT $start,$limitRecord";
 }
 
 
@@ -100,8 +102,26 @@ $users = $stmt->fetchAll();
             <div style="margin: 20px">
                 <form action="" method="get" name="search">
                     <input type="text" name="keyword" value="<?php echo $keyword ?>">
-                    <button class="btn btn-primary">Tìm kiếm </button>
+                    <select name="orderby">
+
+                        <option value="">Sắp xếp theo</option>
+                        <option value="user_id" <?php echo ($orderBy == "user_id") ? "selected" : "" ?>>ID</option>
+                        <option value="user_name" <?php echo ($orderBy == "user_name") ? "selected" : "" ?>>User Name</option>
+                        <option value="user_phone" <?php echo ($orderBy == "user_phone") ? "selected" : "" ?>>SĐT</option>
+                        <option value="user_email" <?php echo ($orderBy == "user_email") ? "selected" : "" ?>>Email</option>
+                        <option value="user_birthday" <?php echo ($orderBy == "user_birthday") ? "selected" : "" ?>>Sinh nhật</option>
+                    </select>
+                    <select name="orderdir">
+                        <option value="">Sắp xếp theo hướng</option>
+                        <option value="ASC" <?php echo ($orderDir == "ASC") ? "selected" : "" ?>>Tăng dần</option>
+                        <option value="DESC" <?php echo ($orderDir == "DESC") ? "selected" : "" ?>>Giảm dần</option>
+                    </select>
+                    <button class="btn btn-primary">Lọc kết quả</button>
                 </form>
+
+
+
+
             </div>
 
             <table class="table">
