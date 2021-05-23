@@ -7,6 +7,8 @@ $serverName = "127.0.0.1";
 // tên CSDL ( tùy chọn )
 $databaseName = "usersmanageproject";
 
+define("UPLOAD_DIR", "uploads/");
+
 try {
     $connection = new PDO("mysql:host=$serverName;dbname=$databaseName", $username, $password);
     // set the PDO error mode to exception
