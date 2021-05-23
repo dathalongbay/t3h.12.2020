@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "connection.php";
 
 
@@ -24,7 +25,7 @@ if (in_array($user_gender, ["user_gender_1", "user_gender_0"])) {
     $user_gender_int = (int) $user_gender_int;
     $sqlCount .= " WHERE user_gender = $user_gender_int";
 }
-echo "<br> \$sqlCount" . $sqlCount;
+echo "<br> \$sqlCount : " . $sqlCount;
 
 $stmtCount = $connection->prepare($sqlCount);
 $stmtCount->execute();
@@ -116,13 +117,27 @@ $users = $stmt->fetchAll();
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-
+<style>
+    .custom-select {
+        width: auto !important;
+    }
+</style>
 </head>
 <body>
 
 <div class="container">
     <div class="row">
         <div class="col-md-12">
+            <?php
+            if (isset($_SESSION["flash_message"])) {
+                ?>
+                <div class="alert alert-success" role="alert">
+                    <?php echo $_SESSION["flash_message"]; ?>
+                </div>
+            <?php
+                unset($_SESSION["flash_message"]);
+            }
+            ?>
             <h1>Danh sách người dùng (<?php echo $count ?> người dùng)</h1>
 
             <div style="margin: 20px">
@@ -130,8 +145,9 @@ $users = $stmt->fetchAll();
             </div>
             <div style="margin: 20px">
                 <form action="" method="get" name="search">
-                    <input type="text" name="keyword" value="<?php echo $keyword ?>">
-                    <select name="orderby">
+                    <input type="text" name="keyword" value="<?php echo $keyword ?>" placeholder="Nhập từ khóa tìm kiếm ...">
+                    Sắp xếp
+                    <select name="orderby" class="custom-select">
 
                         <option value="">Sắp xếp theo</option>
                         <option value="user_id" <?php echo ($orderBy == "user_id") ? "selected" : "" ?>>ID</option>
@@ -140,14 +156,14 @@ $users = $stmt->fetchAll();
                         <option value="user_email" <?php echo ($orderBy == "user_email") ? "selected" : "" ?>>Email</option>
                         <option value="user_birthday" <?php echo ($orderBy == "user_birthday") ? "selected" : "" ?>>Sinh nhật</option>
                     </select>
-                    <select name="orderdir">
+                    <select name="orderdir" class="custom-select">
                         <option value="">Sắp xếp theo hướng</option>
                         <option value="ASC" <?php echo ($orderDir == "ASC") ? "selected" : "" ?>>Tăng dần</option>
                         <option value="DESC" <?php echo ($orderDir == "DESC") ? "selected" : "" ?>>Giảm dần</option>
                     </select>
 
-                    Lọc theo giới tính
-                    <select name="user_gender">
+                    Lọc Kết Quả
+                    <select name="user_gender" class="custom-select">
                         <option value="">-- Lọc theo giới tính --</option>
                         <option value="user_gender_1" <?php echo ($user_gender_int === 1) ? "selected" : "" ?>>Nam</option>
                         <option value="user_gender_0" <?php echo ($user_gender_int === 0) ? "selected" : "" ?>>Nữ</option>

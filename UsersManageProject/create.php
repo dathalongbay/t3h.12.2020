@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "connection.php";
 
 // mảng chứa lỗi validate
@@ -201,9 +202,9 @@ if (is_array($_POST) & !empty($_POST)) {
 
         if ($resultInsert == 1) {
             // insert thành công
-
-            //header("Location: index.php");
-            //exit();
+            $_SESSION["flash_message"] = "Thêm mới người dùng thành công";
+            header("Location: index.php");
+            exit();
         }
     }
 }
