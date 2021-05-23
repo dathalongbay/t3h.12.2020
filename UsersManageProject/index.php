@@ -2,6 +2,12 @@
 session_start();
 require_once "connection.php";
 
+if (!isset($_SESSION["user_login"])) {
+    // chưa tồn tại phiên đăng nhập
+    header("Location: login.php");
+    exit;
+}
+
 
 echo "<pre>";
 print_r($_SERVER['QUERY_STRING']);
@@ -128,6 +134,25 @@ $users = $stmt->fetchAll();
 <div class="container">
     <div class="row">
         <div class="col-md-12">
+
+
+
+            <?php
+
+            echo "<pre>";
+            print_r($_SESSION);
+            echo "</pre>";
+            if (isset($_SESSION["user_login"])) {
+                $user_login = $_SESSION["user_login"];
+                ?>
+                <div class="alert alert-primary" role="alert">
+                    Chào <?php echo $user_login->user_name; ?>
+                    <a href="logout.php">Đăng xuất</a>
+                </div>
+                <?php
+            }
+            ?>
+
             <?php
             if (isset($_SESSION["flash_message"])) {
                 ?>
