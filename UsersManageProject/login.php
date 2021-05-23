@@ -20,10 +20,22 @@ if (isset($_POST) && !empty($_POST)) {
     $password = $_POST["password"];
     $password = md5($password);
     if (strlen($username) > 0 && strlen($username) > 0) {
-        $sqlLogin = "SELECT * FROM users WHERE user_name = '$username' AND user_password = '$password' LIMIT 1";
+       // $sqlLogin = "SELECT * FROM users WHERE user_name = '$username' AND user_password = '$password' LIMIT 1";
+
+        // cách 1 dùng ?
+        //$sqlLogin = "SELECT * FROM users WHERE user_name = ? AND user_password = ? LIMIT 1";
+        //echo "<br>" . $sqlLogin;
+        //$stmtLogin = $connection->prepare($sqlLogin);
+        // [$username, $password]
+        //$stmtLogin->execute([$username, $password]);
+
+        // cách 2 dùng :name
+        $sqlLogin = "SELECT * FROM users WHERE user_name = :user_name AND user_password = :user_password LIMIT 1";
         echo "<br>" . $sqlLogin;
         $stmtLogin = $connection->prepare($sqlLogin);
-        $stmtLogin->execute();
+       //  ["user_name" => $username, "user_password" => $password]
+        $stmtLogin->execute(["user_name" => $username, "user_password" => $password]);
+
         $resultLogin = $stmtLogin->setFetchMode(PDO::FETCH_OBJ);
 // tổng số bản ghi
         $login = $stmtLogin->fetchObject();
@@ -87,6 +99,7 @@ if (isset($_POST) && !empty($_POST)) {
                 <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
                     <input type="password" name="password" class="form-control">
+
                 </div>
 
                 <button type="submit" class="btn btn-primary">Đăng nhập</button>

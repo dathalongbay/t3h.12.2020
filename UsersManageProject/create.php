@@ -196,11 +196,18 @@ if (is_array($_POST) & !empty($_POST)) {
 
         //for($i = 1; $i < 100; $i++) {
             //$user_name_index = $i.$user_name;
-            $sqlInsert = "INSERT INTO `users` ( `user_name`, `first_name`, `last_name`, `user_email`, `user_gender`, `user_phone`, `user_address`, `user_password`, `user_avatar`, `user_birthday`, `user_desc`, `created`, `updated`) VALUES ( '$user_name', '$first_name', '$last_name', '$user_email', $user_gender, '$user_phone', '$user_address', '$user_password', '$user_avatar', '$user_birthday', '$user_desc' , '$created', '$updated');";
+           /* $sqlInsert = "INSERT INTO `users` ( `user_name`, `first_name`, `last_name`, `user_email`, `user_gender`, `user_phone`, `user_address`, `user_password`, `user_avatar`, `user_birthday`, `user_desc`, `created`, `updated`) VALUES ( '$user_name', '$first_name', '$last_name', '$user_email', $user_gender, '$user_phone', '$user_address', '$user_password', '$user_avatar', '$user_birthday', '$user_desc' , '$created', '$updated');";*/
 
-            echo "<br>" . $sqlInsert;
 
-            $resultInsert = $connection->exec($sqlInsert);
+
+        // sql update va sql delete
+        $sqlInsert = "INSERT INTO `users` ( `user_name`, `first_name`, `last_name`, `user_email`, `user_gender`, `user_phone`, `user_address`, `user_password`, `user_avatar`, `user_birthday`, `user_desc`, `created`, `updated`) VALUES ( ?, ?, ?, ?, ?, ? , ? , ? , ? , ? , ? , ? , ?);";
+
+        echo "<br>" . $sqlInsert;
+
+        $stmtInsert = $connection->prepare($sqlInsert);
+
+        $resultInsert = $stmtInsert->execute([$user_name, $first_name, $last_name, $user_email, $user_gender, $user_phone, $user_address, $user_password, $user_avatar, $user_birthday, $user_desc , $created, $updated]);
 
         //}
 
