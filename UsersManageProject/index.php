@@ -6,12 +6,25 @@ echo "<pre>";
 print_r($_SERVER['QUERY_STRING']);
 echo "</pre>";
 
+echo "<pre>";
+print_r($_GET);
+echo "</pre>";
+// gán mặc định
+$user_gender_int = "";
 $keyword = (isset($_GET["keyword"]) && $_GET["keyword"]) ? $_GET["keyword"] : "";
+$user_gender = (isset($_GET["user_gender"]) && $_GET["user_gender"]) ? $_GET["user_gender"] : "";
 if (strlen($keyword) > 0) {
     $sqlCount = "SELECT COUNT(*) AS total FROM users WHERE user_name LIKE '%$keyword%' OR user_phone LIKE '%$keyword%'";
 } else {
     $sqlCount = "SELECT COUNT(*) AS total FROM users";
 }
+
+if (in_array($user_gender, ["user_gender_1", "user_gender_0"])) {
+    $user_gender_int = str_replace("user_gender_", "", $user_gender);
+    $user_gender_int = (int) $user_gender_int;
+    $sqlCount .= " WHERE user_gender = $user_gender_int";
+}
+echo "<br> \$sqlCount" . $sqlCount;
 
 $stmtCount = $connection->prepare($sqlCount);
 $stmtCount->execute();
@@ -48,10 +61,26 @@ $start = ($limitRecord*$curPage);
 $orderBy = (isset($_GET["orderby"]) && $_GET["orderby"]) ? $_GET["orderby"] : "user_id";
 $orderDir = (isset($_GET["orderdir"]) && $_GET["orderdir"]) ? $_GET["orderdir"] : "ASC";
 if (strlen($keyword) > 0) {
-    $sqlSelect = "SELECT * FROM users WHERE user_name LIKE '%$keyword%' OR user_phone LIKE '%$keyword%' ORDER BY $orderBy $orderDir LIMIT $start,$limitRecord";
+    $sqlSelect = "SELECT * FROM users WHERE user_name LIKE '%$keyword%' OR user_phone LIKE '%$keyword%'";
+
+    if (in_array($user_gender, ["user_gender_1", "user_gender_0"])) {
+        $user_gender_int = str_replace("user_gender_", "", $user_gender);
+        $user_gender_int = (int) $user_gender_int;
+        $sqlSelect .= " AND user_gender = $user_gender_int";
+    }
 } else {
-    $sqlSelect = "SELECT * FROM users ORDER BY $orderBy $orderDir LIMIT $start,$limitRecord";
+    $sqlSelect = "SELECT * FROM users";
+
+    if (in_array($user_gender, ["user_gender_1", "user_gender_0"])) {
+        $user_gender_int = str_replace("user_gender_", "", $user_gender);
+        $user_gender_int = (int) $user_gender_int;
+        $sqlSelect .= " WHERE user_gender = $user_gender_int";
+    }
 }
+$sqlSelect .= " ORDER BY $orderBy $orderDir";
+$sqlSelect .= " LIMIT $start,$limitRecord";
+
+
 
 
 echo "<br> sql phân trang : " . $sqlSelect;
@@ -94,7 +123,7 @@ $users = $stmt->fetchAll();
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Danh sách người dùng</h1>
+            <h1>Danh sách người dùng (<?php echo $count ?> người dùng)</h1>
 
             <div style="margin: 20px">
                 <a href="create.php" class="btn btn-info">Thêm mới người dùng</a>
@@ -115,6 +144,13 @@ $users = $stmt->fetchAll();
                         <option value="">Sắp xếp theo hướng</option>
                         <option value="ASC" <?php echo ($orderDir == "ASC") ? "selected" : "" ?>>Tăng dần</option>
                         <option value="DESC" <?php echo ($orderDir == "DESC") ? "selected" : "" ?>>Giảm dần</option>
+                    </select>
+
+                    Lọc theo giới tính
+                    <select name="user_gender">
+                        <option value="">-- Lọc theo giới tính --</option>
+                        <option value="user_gender_1" <?php echo ($user_gender_int === 1) ? "selected" : "" ?>>Nam</option>
+                        <option value="user_gender_0" <?php echo ($user_gender_int === 0) ? "selected" : "" ?>>Nữ</option>
                     </select>
                     <button class="btn btn-primary">Lọc kết quả</button>
                 </form>
