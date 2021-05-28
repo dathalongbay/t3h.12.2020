@@ -8,6 +8,114 @@ if (!isset($_SESSION["user_login"])) {
     exit;
 }
 
+// cập nhật dữ liệu sau khi sửa vào trong db
+if (count($_POST) > 0) {
+    echo " dữ liệu post di : <pre>";
+    print_r($_POST);
+    echo "</pre>";
+    $user_id = (int)$_POST['user_id'];
+    $user_name = $_POST['user_name'];
+    $first_name = $_POST['first_name'];
+    $last_name = $_POST['last_name'];
+    $user_email = $_POST['user_email'];
+    $user_gender = (int)$_POST['user_gender'];
+    $user_phone = $_POST['user_phone'];
+    $user_address = $_POST['user_address'];
+
+    $user_birthday = $_POST['user_birthday'];
+    $user_desc = $_POST['user_desc'];
+    $updated = date("Y-m-d H:i:s");
+
+
+    $user_password = $_POST['user_password'];
+
+    $uploadOK = 0;
+    if (isset($_FILES["user_avatar"]["name"]) && isset($_FILES["user_avatar"]["tmp_name"])) {
+        if (strlen($_FILES["user_avatar"]["name"]) > 0 && strlen($_FILES["user_avatar"]["tmp_name"]) > 0 && strlen($_FILES["user_avatar"]["size"]) > 0) {
+            $target_dir = "uploads/";
+
+            if (!file_exists($target_dir)) {
+                mkdir($target_dir, 0777, true);
+            }
+            $target_file = $target_dir . basename($_FILES["user_avatar"]["name"]);
+            if (move_uploaded_file($_FILES["user_avatar"]["tmp_name"], $target_file)){
+                $uploadOK = 1;
+            }
+        }
+    }
+
+
+    $dataBindSql = [];
+    // sql update va sql delete
+    $sqlUpdate = "UPDATE `users` SET ";
+
+    $sqlUpdate .= "`user_name` = ? ";
+    $dataBindSql[] = $user_name;
+
+    $sqlUpdate .= ",`first_name` = ?";
+    $dataBindSql[] = $first_name;
+
+    $sqlUpdate .= ",`last_name` = ?";
+    $dataBindSql[] = $last_name;
+
+    $sqlUpdate .= ", `user_email` = ?";
+    $dataBindSql[] = $user_email;
+
+    $sqlUpdate .= ", `user_gender` = ?";
+    $dataBindSql[] = $user_gender;
+
+    $sqlUpdate .= ", `user_phone` = ? ";
+    $dataBindSql[] = $user_phone;
+
+    $sqlUpdate .= ", `user_address` = ?";
+    $dataBindSql[] = $user_address;
+
+    // cập nhật avatar khi người dùng upload ảnh mới lên
+    if ($uploadOK == 1 && isset($target_file)) {
+        $sqlUpdate .= ",`user_avatar` = ?";
+        $dataBindSql[] = $target_file;
+    }
+
+    $sqlUpdate .= ",`user_birthday` =?";
+    $dataBindSql[] = $user_birthday;
+
+    // cập nhật mật khẩu khi người dùng nhập mật khẩu mới vào
+    if (strlen($user_password) > 0) {
+        $user_password = md5($user_password);
+        $sqlUpdate .= ",`user_password` = ?";
+        $dataBindSql[] = $user_password;
+    }
+
+    $sqlUpdate .= ",`user_desc` = ?";
+    $dataBindSql[] = $user_desc;
+
+    $sqlUpdate .= ",`updated` = ?";
+    $dataBindSql[] = $updated;
+
+    $sqlUpdate .= " WHERE `user_id` = ?";
+    $dataBindSql[] = $user_id;
+
+    echo "<br>" . $sqlUpdate;
+    echo "<pre>";
+    print_r($dataBindSql);
+    echo "</pre>";
+
+
+    $stmtInsert = $connection->prepare($sqlUpdate);
+
+    // 11 dấu ? đến 13 ?
+    // => mảng bind dữ lieu vào trong execute() có từ 11 đến 13 phần tử
+    $resultUpdate = $stmtInsert->execute($dataBindSql);
+
+    if ($resultUpdate == 1) {
+        // insert thành công
+        $_SESSION["flash_message"] = "Cập nhật người dùng thành công";
+        header("Location: edit.php?id=".$user_id);
+        exit();
+    }
+}
+
+// lấy bản ghi từ CSDL ra theo id xuất hiện trên url
 if (isset($_GET["id"]) && ($_GET["id"] > 0)) {
     $user_id = (int)$_GET["id"];
     $sqlSelect = "SELECT * FROM users WHERE user_id = ? LIMIT 1";
@@ -56,9 +164,23 @@ if (isset($_GET["id"]) && ($_GET["id"] > 0)) {
 
 <div class="container">
     <div class="row">
+        <?php
+        if (isset($_SESSION["flash_message"])) {
+            ?>
+            <div class="alert alert-success" role="alert">
+                <?php echo $_SESSION["flash_message"]; ?>
+            </div>
+            <?php
+            unset($_SESSION["flash_message"]);
+        }
+        ?>
+
         <div class="col-md-12">
             <h1>Sửa người dùng</h1>
             <form name="themsv" method="post" action="" enctype="multipart/form-data">
+
+                <input type="hidden" name="user_id" value="<?php echo $user->user_id ?>" />
+
                 <div class="form-group">
                     <label>Username người dùng</label>
                     <input type="text" name="user_name" class="form-control" value="<?php echo $user->user_name ?>">
