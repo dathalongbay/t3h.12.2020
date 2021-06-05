@@ -11,7 +11,7 @@ class Database {
 
     const DATABASE_PASSWORD = "";
 
-    const DATABASE_NAME = "usersmanageproject";
+    const DATABASE_NAME = "user-proj";
 
 
     public function __construct()
