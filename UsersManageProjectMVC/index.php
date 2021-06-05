@@ -7,6 +7,10 @@
 // câu lệnh nạp file
 // include , require , include_once , require_once 4 câu lệnh nạp file vào file khác
 
+// khai báo hằng số url của ứng dụng
+// tên miền của ứng dụng này
+define("SITE_URL", "http://localhost/t3h.12.2020/UsersManageProjectMVC/");
+
 // nên nạp đầu tiên
 include_once "mvc/models/Database.php";
 // nạp các controller vào trong index.php
