@@ -25,7 +25,7 @@ class UsersModel extends Database {
     // lấy ra 1 bản ghi duy nhất
     public function getSingle($id) {
 
-        $sqlSelect = "SELECT * FROM $this->table WHERE id = ? LIMIT 1";
+        $sqlSelect = "SELECT * FROM $this->table WHERE user_id = ? LIMIT 1";
 
         $stmt = $this->connection->prepare($sqlSelect);
 

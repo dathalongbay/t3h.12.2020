@@ -93,6 +93,12 @@ class UsersController {
     public function edit() {
         echo "<br>" . __METHOD__;
 
+        $id = isset($_GET["id"]) ? (int) $_GET["id"] : 0;
+        // khởi tạo model
+        $userModel = new UsersModel();
+        // lấy data từ model
+        $user = $userModel->getSingle($id);
+
         include_once "mvc/views/users/edit.php";
     }
 
