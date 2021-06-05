@@ -45,6 +45,9 @@ class UsersModel extends Database {
     // output là return cuối hàm
     public function store(array $dataBind) {
 
+        echo "<pre>";
+        print_r($dataBind);
+        echo "</pre>";
         $sqlInsert = "INSERT INTO $this->table ( `user_name`, `first_name`, `last_name`, `user_email`, `user_gender`, `user_phone`, `user_address`, `user_password`, `user_avatar`, `user_birthday`, `user_desc`, `created`, `updated`) VALUES ( ?, ?, ?, ?, ?, ? , ? , ? , ? , ? , ? , ? , ?)";
 
         $stmtInsert = $this->connection->prepare($sqlInsert);

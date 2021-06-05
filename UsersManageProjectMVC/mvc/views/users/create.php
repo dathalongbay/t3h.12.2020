@@ -13,18 +13,11 @@
 <body>
 
 
-<?php
-if (is_array($errors_validate) && !empty($errors_validate)) { ?>
-    <div class="alert alert-danger" role="alert">
-        <?php echo implode("<br>", $errors_validate); ?>
-    </div>
-    <?php
-} ?>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
             <h1>Thêm mới người dùng</h1>
-            <form name="themsv" method="post" action="" enctype="multipart/form-data">
+            <form name="themsv" method="post" action="<?php echo SITE_URL ?>index.php?controller=users&action=store" enctype="multipart/form-data">
                 <div class="form-group">
                     <label>Username người dùng <span style="color:red">*</span> (từ 6 đên 32 ký tự và không trùng lặp với user khác )</label>
                     <input type="text" name="user_name" class="form-control" value="<?php echo isset($form_data["user_name"]) ? $form_data["user_name"] : "" ?>">
