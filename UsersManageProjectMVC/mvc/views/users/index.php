@@ -24,7 +24,7 @@
 
             <div style="margin: 20px">
 
-                <a href="create.php" class="btn btn-info">Thêm mới người dùng</a>
+                <a href="<?php echo SITE_URL ?>index.php?controller=users&action=create" class="btn btn-info">Thêm mới người dùng</a>
                 <?php echo $abc ?>
                 <h2> <?php echo $dateNow ?></h2>
             </div>
@@ -55,8 +55,8 @@
                             <td><?php echo $user->user_email ?></td>
                             <td><?php echo $user->user_birthday ?></td>
                             <td>
-                                <a href="edit.php?id=<?php echo $user->user_id ?>" class="btn btn-warning">Edit</a>
-                                <a href="delete.php?id=<?php echo $user->user_id ?>" class="btn btn-danger">Delete</a>
+                                <a href="<?php echo SITE_URL ?>index.php?controller=users&action=edit&id=<?php echo $user->user_id ?>" class="btn btn-warning">Edit</a>
+                                <a href="<?php echo SITE_URL ?>index.php?controller=users&action=edit&id=<?php echo $user->user_id ?>" class="btn btn-danger">Delete</a>
                             </td>
                         </tr>
                         <?php
