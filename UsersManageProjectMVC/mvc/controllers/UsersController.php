@@ -105,6 +105,7 @@ class UsersController {
     // cập nhật vào db
     public function update() {
         echo "<br>" . __METHOD__;
+        
     }
 
 
