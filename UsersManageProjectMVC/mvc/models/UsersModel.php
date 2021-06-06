@@ -60,35 +60,82 @@ class UsersModel extends Database {
 
 
     // update 1 bản ghi
-    public function update(array $dataBindSql) {
-
+    public function update(array $dataRaw) {
+        $dataBindSql = [];
         // sql update va sql delete
         $sqlUpdate = "UPDATE $this->table SET ";
 
-        $sqlUpdate .= "`user_name` = ? ";
+        if (isset($dataRaw["user_name"])) {
+            $sqlUpdate .= "`user_name` = ?";
+            $dataBindSql[] = $dataRaw["user_name"];
+        }
 
-        $sqlUpdate .= ",`first_name` = ?";
+        if (isset($dataRaw["first_name"])) {
+            $sqlUpdate .= ",`first_name` = ?";
+            $dataBindSql[] = $dataRaw["first_name"];
+        }
 
-        $sqlUpdate .= ",`last_name` = ?";
+        if (isset($dataRaw["last_name"])) {
+            $sqlUpdate .= ",`last_name` = ?";
+            $dataBindSql[] = $dataRaw["last_name"];
+        }
 
-        $sqlUpdate .= ", `user_email` = ?";
+        if (isset($dataRaw["user_email"])) {
+            $sqlUpdate .= ",`user_email` = ?";
+            $dataBindSql[] = $dataRaw["user_email"];
+        }
 
-        $sqlUpdate .= ", `user_gender` = ?";
+        if (isset($dataRaw["user_gender"])) {
+            $sqlUpdate .= ",`user_gender` = ?";
+            $dataBindSql[] = $dataRaw["user_gender"];
+        }
 
-        $sqlUpdate .= ", `user_phone` = ? ";
 
-        $sqlUpdate .= ", `user_address` = ?";
+        if (isset($dataRaw["user_phone"])) {
+            $sqlUpdate .= ",`user_phone` = ?";
+            $dataBindSql[] = $dataRaw["user_phone"];
+        }
 
-        $sqlUpdate .= ",`user_birthday` =?";
+        if (isset($dataRaw["user_address"])) {
+            $sqlUpdate .= ",`user_address` = ?";
+            $dataBindSql[] = $dataRaw["user_address"];
+        }
 
-        $sqlUpdate .= ",`user_desc` = ?";
+        // update password
+        if (isset($dataRaw["user_password"])) {
+            $sqlUpdate .= ", `user_password` = ?";
+            $dataBindSql[] = $dataRaw["user_password"];
+        }
 
-        $sqlUpdate .= ",`updated` = ?";
+        // update ảnh đại diện
+        if (isset($dataRaw["user_avatar"])) {
+            $sqlUpdate .= ", `user_avatar` = ?";
+            $dataBindSql[] = $dataRaw["user_avatar"];
+        }
 
-        $sqlUpdate .= " WHERE `user_id` = ?";
+        if (isset($dataRaw["user_birthday"])) {
+            $sqlUpdate .= ",`user_birthday` = ?";
+            $dataBindSql[] = $dataRaw["user_birthday"];
+        }
+
+        if (isset($dataRaw["user_desc"])) {
+            $sqlUpdate .= ",`user_desc` = ?";
+            $dataBindSql[] = $dataRaw["user_desc"];
+        }
+
+        if (isset($dataRaw["updated"])) {
+            $sqlUpdate .= ",`updated` = ?";
+            $dataBindSql[] = $dataRaw["updated"];
+        }
+
+        if (isset($dataRaw["user_id"])) {
+            $sqlUpdate .= " WHERE `user_id` = ?";
+            $dataBindSql[] = $dataRaw["user_id"];
+        }
 
         $stmtInsert = $this->connection->prepare($sqlUpdate);
 
+        // truyền cho ->execute là 1 mảng chỉ số
         $resultUpdate = $stmtInsert->execute($dataBindSql);
 
         // output

@@ -27,7 +27,7 @@
 
         <div class="col-md-12">
             <h1>Sửa người dùng</h1>
-            <form name="themsv" method="post" action="" enctype="multipart/form-data">
+            <form name="themsv" method="post" action="<?php echo SITE_URL ?>index.php?controller=users&action=update" enctype="multipart/form-data">
 
                 <input type="hidden" name="user_id" value="<?php echo $user->user_id ?>" />
 
